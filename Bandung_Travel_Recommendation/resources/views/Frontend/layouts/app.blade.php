@@ -139,10 +139,10 @@
                 <a class="nav-link" href="#">Contact</a>
               </li>
               <li class="nav-item">
-                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#SignModal">Login</a>
+                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#SignModal" href="#loginTab">Login</a>
               </li>
               <li class="nav-item">
-                <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SignModal">Register</a>
+                <a class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#SignModal" href="#registerTab">Register</a>
               </li>
             </ul>
           </div>

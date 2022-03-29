@@ -13,8 +13,8 @@ if (p.length === 0 || p === "/" || p.match(/^\/?index/)){
 }
 
 $('a[data-bs-toggle="modal"][data-bs-target]').click(function () {
-    var target = $(this).attr('data-bs-target');
-    $('a[data-bs-toggle="tab"][href="' + target + '"]').tab('show');
+    var target = $(this).attr('href');
+    $('a[data-bs-toggle="tab"][data-bs-target="' + target + '"]').tab('show');
 })
 
 $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
