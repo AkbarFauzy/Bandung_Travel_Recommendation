@@ -4,52 +4,6 @@
 <link rel="stylesheet" href="{{asset('css/animation.css')}}">
 @endsection
 @section('content')
-
-
-<div class="row justify-content-start">
-    <div id="dest-hist">
-        <div class="container">
-            <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{asset('img/dest-4.jpg')}}" class="d-block w-100">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Visit Again</h5>
-                            <p>Lembang Park</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{asset('img/dest-4.jpg')}}" class="d-block w-100">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Visit Again</h5>
-                            <p>Tafso Barn</p>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{asset('img/dest-4.jpg')}}" class="d-block w-100">
-                        <div class="carousel-caption d-none d-md-block">
-                            <h5>Visit Again</h5>
-                            <p>Trans Studio Bandung</p>
-                        </div>
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="row justify-content-start">
     <div class="col-3">
         <div class="side_category">
@@ -60,22 +14,22 @@
                         <div id="side-step" class="col-md-4">
                             <div id="stepper4" class="bs-stepper vertical linear">
                                 <div class="bs-stepper-header" role="tablist">
-                                    <div class="step active" data-target="#test-vl-1">
-                                        <button type="button" class="step-trigger" role="tab" id="stepper4trigger1" aria-controls="test-vl-1" aria-selected="true">
+                                    <div id="stepper1" class="step active" data-target="#test-vl-1">
+                                        <button type="button" class="step-trigger" role="tab" id="stepper4trigger1" aria-controls="test-vl-1" aria-selected="true" >
                                             <span class="bs-stepper-circle">1</span>
                                             <span class="bs-stepper-label">Pilih Destinasi</span>
                                         </button>
                                     </div>
                                     <div class="bs-stepper-line"></div>
-                                    <div class="step" data-target="#test-vl-2">
-                                        <button type="button" class="step-trigger" role="tab" id="stepper4trigger2" aria-controls="test-vl-2" aria-selected="false" disabled="disabled">
+                                    <div id="stepper2" class="step" data-target="#test-vl-2">
+                                        <button type="button" class="step-trigger" role="tab" id="stepper4trigger2" aria-controls="test-vl-2" aria-selected="true">
                                             <span class="bs-stepper-circle">2</span>
                                             <span class="bs-stepper-label">Checkout</span>
                                         </button>
                                     </div>
                                     <div class="bs-stepper-line"></div>
-                                    <div class="step" data-target="#test-vl-3">
-                                        <button type="button" class="step-trigger" role="tab" id="stepper4trigger3" aria-controls="test-vl-3" aria-selected="false" disabled="disabled">
+                                    <div id="stepper3" class="step" data-target="#test-vl-3">
+                                        <button type="button" class="step-trigger" role="tab" id="stepper4trigger3" aria-controls="test-vl-3" aria-selected="true">
                                             <span class="bs-stepper-circle">3</span>
                                             <span class="bs-stepper-label">Berhasil</span>
                                         </button>
@@ -84,18 +38,21 @@
                             </div>
                         </div>
                         <div class="col-md-8">
-                                <div id="list-dest" class="container">
-                                    @for($i =0; $i < 3;$i++) <ul class="list-group">
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <h5>Tafso Barn</h5>
-                                            <button type="button" class="btn btn-danger">X</button>
-                                        </li>
-                                        </ul>
-                                        @endfor
-                                </div>
+                            <div id="list-dest" class="container">
+                                @for($i =0; $i < 3;$i++) <ul class="list-group">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <h5>Tafso Barn</h5>
+                                        <button type="button" class="btn-close" aria-label="Close"></button>
+                                    </li>
+                                    </ul>
+                                    @endfor
+                            </div>
                             <div id="button-checkout">
                                 <div class="btn_view">
-                                    <a href="#" class="btn btn-primary">Checkout</a>
+                                    <a id="next-btn" onclick="show_hide();" href="#" class="btn btn-primary">Next</a>
+                                    <a id="check-btn" onclick="show_hide();" href="#" class="btn btn-primary" style="display: none;">Checkout</a>
+                                    <a id="save-btn" onclick="show_hide();" href="#" class="btn btn-primary" style="display: none;">Save</a>
+                                    <p id="msg-success" href="#" style="color: green; display: none; text-decoration : none;">Berhasil disimpan</p>
                                 </div>
                             </div>
                         </div>
@@ -226,11 +183,25 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h4 class="card-title">Tafso Barn</h4>
-                                        <p class="card-text">Alamat : Jl. Baru Laksana No.75, Pagerwangi, Kec. Lembang, Kabupaten Bandung Barat, Jawa Barat 40391</p>
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                        <div class="btn_view">
-                                            <a href="#" class="btn btn-primary">View More</a>
+                                        <div class="row">
+                                            <div class="col-md-11">
+                                                <h4 class="card-title">Tafso Barn</h4>
+                                                <p class="card-text">Alamat : Jl. Baru Laksana No.75, Pagerwangi, Kec. Lembang, Kabupaten Bandung Barat, Jawa Barat 40391</p>
+                                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                                <div id="button-dest" class="row">
+                                                    <div class="col-md-11 btn_view">
+                                                        <a href="#" class="btn btn-primary">View More</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-md-1">
+                                                <button type="button" class="btn-close" style="position: relative; left: 27px; bottom: 10px;" aria-label="Close"></button>
+                                                <div class="col-md-1 btn_view" style="padding-top:150px">
+                                                    <a href="#" class="btn btn-primary">+</a>
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -244,5 +215,33 @@
     </section>
 </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<!-- Stepper JavaScript -->
+<script>
+    function show_hide() {
+        var next = document.getElementById("next-btn");
+        var check = document.getElementById("check-btn");
+        var save = document.getElementById("save-btn");
+        var msg = document.getElementById("msg-success")
+        var active2 = document.getElementById("stepper2");
+        var active3 = document.getElementById("stepper3");
+        if (save.style.display === "none"){
+            if (check.style.display === "none") {
+                check.style.display = "inline-block";
+                next.style.display = "none"
+                active2.classList.add("active");
+            }else{
+                save.style.display = "inline-block"
+                check.style.display = "none"
+                active3.classList.add("active");
+            }
+        }else{
+            msg.style.display = "inline-block"
+            save.style.display = "none"
+        }
+            
+    }
+</script>
 
 @endsection
