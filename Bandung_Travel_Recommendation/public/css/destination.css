@@ -6,17 +6,14 @@
 }
 
 #section_box {
-    /* height: 80vh; */
     display: flex;
     padding: 200px 70px 0px 100px  ;
     align-items: center;
 }
 
 #section_box .container {
-    /* border: 1px solid; */
     padding-top: 30px;
     border-radius: 10px;
-    box-shadow: 0 0 0.9375em rgba(0, 0, 0, 0.219);
 }
 
 .image_src {
@@ -26,9 +23,26 @@
     border-radius: 10px 0px 0px 10px;
 }
 
+#carousel-dest {
+    position: relative;
+    width : 85vh;
+    left: 20px;
+}
+
+#carousel-dest-1 {
+    position: relative;
+    right: 10px;
+    width: 29vh;
+}
+
+.carousel-inner {
+    border-radius: 10px;
+    box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.219);
+}
+
 .card, .mb3 {
     padding: 0px;
-    box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.219);
+    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.219);
     border-radius: 10px;
     display: flex;
 }
@@ -93,6 +107,18 @@
 
 .list-group {
     padding-top: 10px;
+}
+
+#star-img {
+    height: 20px;
+    width: 48px;
+}
+
+#position-img {
+    position: relative;
+    height: 20px;
+    width: 28px;
+    
 }
 
 .bs-stepper .step-trigger {

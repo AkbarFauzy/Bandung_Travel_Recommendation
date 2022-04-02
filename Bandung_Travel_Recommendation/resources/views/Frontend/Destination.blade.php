@@ -15,7 +15,7 @@
                             <div id="stepper4" class="bs-stepper vertical linear">
                                 <div class="bs-stepper-header" role="tablist">
                                     <div id="stepper1" class="step active" data-target="#test-vl-1">
-                                        <button type="button" class="step-trigger" role="tab" id="stepper4trigger1" aria-controls="test-vl-1" aria-selected="true" >
+                                        <button type="button" class="step-trigger" role="tab" id="stepper4trigger1" aria-controls="test-vl-1" aria-selected="true">
                                             <span class="bs-stepper-circle">1</span>
                                             <span class="bs-stepper-label">Pilih Destinasi</span>
                                         </button>
@@ -39,11 +39,12 @@
                         </div>
                         <div class="col-md-8">
                             <div id="list-dest" class="container">
-                                @for($i =0; $i < 3;$i++) <ul class="list-group">
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <h5>Tafso Barn</h5>
-                                        <button type="button" class="btn-close" aria-label="Close"></button>
-                                    </li>
+                                @for($i =0; $i < 3;$i++) 
+                                    <ul class="list-group">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <h5>Tafso Barn</h5>
+                                            <button type="button" class="btn-close" aria-label="Close"></button>
+                                        </li>
                                     </ul>
                                     @endfor
                             </div>
@@ -175,49 +176,123 @@
                 </div>
                 <hr>
                 <div class="row">
-                    @for($i =0; $i < 15;$i++) <div class="col-md-12">
-                        <div class="card mb-3">
-                            <div class="row no-gutters">
-                                <div class="col-md-4">
-                                    <img class="image_src" src="{{asset('img/tafso-barn.jpg')}}">
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-11">
-                                                <h4 class="card-title">Tafso Barn</h4>
-                                                <p class="card-text">Alamat : Jl. Baru Laksana No.75, Pagerwangi, Kec. Lembang, Kabupaten Bandung Barat, Jawa Barat 40391</p>
-                                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                                                <div id="button-dest" class="row">
-                                                    <div class="col-md-11 btn_view">
-                                                        <a href="#" class="btn btn-primary">View More</a>
+                    @for($i =0; $i < 15;$i++) 
+                        <div class="col-md-12">
+                            <div class="card mb-3">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img class="image_src" src="{{asset('img/tafso-barn.jpg')}}">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-11">
+                                                    <h4 class="card-title">Tafso Barn</h4>
+                                                    <p class="card-text">Alamat : Jl. Baru Laksana No.75, Pagerwangi, Kec. Lembang, Kabupaten Bandung Barat, Jawa Barat 40391</p>
+                                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                                    <div id="button-dest" class="row">
+                                                        <div class="col-md-11 btn_view">
+                                                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-dest">View More</a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1">
+                                                    <button type="button" class="btn-close" style="position: relative; left: 27px; bottom: 10px;" aria-label="Close"></button>
+                                                    <div class="col-md-1 btn_view" style="padding-top:150px">
+                                                        <a href="#" class="btn btn-primary">+</a>
                                                     </div>
 
                                                 </div>
-                                            </div>
-                                            <div class="col-md-1">
-                                                <button type="button" class="btn-close" style="position: relative; left: 27px; bottom: 10px;" aria-label="Close"></button>
-                                                <div class="col-md-1 btn_view" style="padding-top:150px">
-                                                    <a href="#" class="btn btn-primary">+</a>
-                                                </div>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <hr>
                         </div>
-                        <hr>
+                    @endfor
                 </div>
-                @endfor
+            <!-- ================================================= Modal ================================================== -->
+                <div class="modal fade" id="modal-dest" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content" style="border-radius: 10px;">
+                            <div class="modal-body">
+                                <section>
+                                    <div class="container py-4">
+                                        <div class="row">
+                                            <h3 class="modal-title" id="modal-title" style="position: relative; bottom:10px;">Tafso Barn</h3>
+                                            <a href="#" style="text-decoration: none; color:black;">Alamat : Jl. Baru Laksana No.75, Pagerwangi, Kec. Lembang,Kabupaten Bandung Barat, Jawa Barat 40391</a>
+                                        </div>
+                                        <hr style="width:100%; position:relative; top:13px">
+                                    </div>
+                                    <div id="container-body" class="container py-4" style="position:relative; bottom:25px;">
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <div id="carousel-dest" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                                                    <div class="carousel-indicators">
+                                                        <button type="button" data-bs-target="#carousel-dest" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                        <button type="button" data-bs-target="#carousel-dest" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                        <button type="button" data-bs-target="#carousel-dest" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                                    </div>
+                                                    <div class="carousel-inner">
+                                                        <div class="carousel-item active" data-bs-interval="10000">
+                                                            <img src="{{asset('img/1-min.jpg')}}" class="d-block w-100">
+                                                            <div class="carousel-caption d-none d-md-block">
+                                                            </div>
+                                                        </div>
+                                                        <div class="carousel-item" data-bs-interval="2000">
+                                                            <img src="{{asset('img/dest-5.jpg')}}" class="d-block w-100">
+                                                            <div class="carousel-caption d-none d-md-block">
+                                                            </div>
+                                                        </div>
+                                                        <div class="carousel-item">
+                                                            <img src="{{asset('img/dest-6.jpg')}}" class="d-block w-100">
+                                                            <div class="carousel-caption d-none d-md-block">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="row">
+                                                    @for($i =0; $i < 3;$i++) 
+                                                        <div id="carousel-dest-1" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                                                            <div class="carousel-inner">
+                                                                <div class="carousel-item active" data-bs-interval="10000">
+                                                                    <img src="{{asset('img/dest-5.jpg')}}" class="d-block w-100">
+                                                                </div>
+                                                                <div class="carousel-item" data-bs-interval="2000">
+                                                                    <img src="{{asset('img/dest-6.jpg')}}" class="d-block w-100">
+                                                                </div>
+                                                                <div class="carousel-item">
+                                                                    <img src="{{asset('img/1-min.jpg')}}" class="d-block w-100">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <p></p>
+                                                    @endfor
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="container py-4">
+                                        <div class="tab-content">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </section>
     </div>
-    </section>
-</div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-<!-- Stepper JavaScript -->
+
 <script>
     function show_hide() {
         var next = document.getElementById("next-btn");
@@ -226,21 +301,21 @@
         var msg = document.getElementById("msg-success")
         var active2 = document.getElementById("stepper2");
         var active3 = document.getElementById("stepper3");
-        if (save.style.display === "none"){
+        if (save.style.display === "none") {
             if (check.style.display === "none") {
                 check.style.display = "inline-block";
                 next.style.display = "none"
                 active2.classList.add("active");
-            }else{
+            } else {
                 save.style.display = "inline-block"
                 check.style.display = "none"
                 active3.classList.add("active");
             }
-        }else{
+        } else {
             msg.style.display = "inline-block"
             save.style.display = "none"
         }
-            
+
     }
 </script>
 
