@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('favorite_place_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedBigInteger('favorite_id');
-            $table->unsignedBigInteger('place_id');
+            $table->integer('favorite_id')->unsigned();
+            $table->integer('place_id')->unsigned();
 
             $table->foreign('favorite_id')->references('id')->on('favorites');
             $table->foreign('place_id')->references('id')->on('places');
