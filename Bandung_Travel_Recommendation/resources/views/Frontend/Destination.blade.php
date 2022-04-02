@@ -64,7 +64,7 @@
     </div>
     <div class="col-9">
         <section id="section_box">
-            <div id="dest-selection" class="container">
+            <div id="dest-selection" class="container" style="position: relative; bottom: 20px;">
                 <div class="row">
                     <div class="col-md-4">
                         <h4>Search Result</h4>
@@ -77,6 +77,7 @@
                             </form>
                         </div>
                     </div>
+                    <div class="col-md-2"></div>
                     <div class="col-md-1">
                         <div class="btn-group">
                             <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -176,7 +177,7 @@
                 </div>
                 <hr>
                 <div class="row">
-                    @for($i =0; $i < 15;$i++) 
+                    @for($i =0; $i < 7;$i++) 
                         <div class="col-md-12">
                             <div class="card mb-3">
                                 <div class="row no-gutters">
@@ -213,7 +214,7 @@
                         </div>
                     @endfor
                 </div>
-            <!-- ================================================= Modal ================================================== -->
+        <!-- ================================================= Modal ================================================== -->
                 <div class="modal fade" id="modal-dest" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content" style="border-radius: 10px;">
@@ -223,38 +224,42 @@
                                         <div class="row">
                                             <h3 class="modal-title" id="modal-title" style="position: relative; bottom:10px;">Tafso Barn</h3>
                                             <a href="#" style="text-decoration: none; color:black;">Alamat : Jl. Baru Laksana No.75, Pagerwangi, Kec. Lembang,Kabupaten Bandung Barat, Jawa Barat 40391</a>
+                                            <a href="#" style="text-decoration: none; position:relative; top: 20px;"><small class="text-muted">Wisata Alam</small></a>
                                         </div>
                                         <hr style="width:100%; position:relative; top:13px">
                                     </div>
-                                    <div id="container-body" class="container py-4" style="position:relative; bottom:25px;">
+                                    <div id="container-img" class="container py-4" style="position:relative; bottom:25px;">
                                         <div class="row">
-                                            <div class="col-md-9">
-                                                <div id="carousel-dest" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                                                    <div class="carousel-indicators">
-                                                        <button type="button" data-bs-target="#carousel-dest" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                                        <button type="button" data-bs-target="#carousel-dest" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                                        <button type="button" data-bs-target="#carousel-dest" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                            <div id="img-modal">
+                                                <img src="{{asset('img/1-min.jpg')}}" class="d-block w-100" style="border-radius: 10px;">
+                                            </div>
+                                            
+                                            <!-- <div id="carousel-dest" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                                                <div class="carousel-indicators">
+                                                    <button type="button" data-bs-target="#carousel-dest" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                                    <button type="button" data-bs-target="#carousel-dest" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                                    <button type="button" data-bs-target="#carousel-dest" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                                </div>
+                                                <div class="carousel-inner">
+                                                    <div class="carousel-item active" data-bs-interval="10000">
+                                                        <img src="{{asset('img/1-min.jpg')}}" class="d-block w-100">
+                                                        <div class="carousel-caption d-none d-md-block">
+                                                        </div>
                                                     </div>
-                                                    <div class="carousel-inner">
-                                                        <div class="carousel-item active" data-bs-interval="10000">
-                                                            <img src="{{asset('img/1-min.jpg')}}" class="d-block w-100">
-                                                            <div class="carousel-caption d-none d-md-block">
-                                                            </div>
+                                                    <div class="carousel-item" data-bs-interval="2000">
+                                                        <img src="{{asset('img/dest-5.jpg')}}" class="d-block w-100">
+                                                        <div class="carousel-caption d-none d-md-block">
                                                         </div>
-                                                        <div class="carousel-item" data-bs-interval="2000">
-                                                            <img src="{{asset('img/dest-5.jpg')}}" class="d-block w-100">
-                                                            <div class="carousel-caption d-none d-md-block">
-                                                            </div>
-                                                        </div>
-                                                        <div class="carousel-item">
-                                                            <img src="{{asset('img/dest-6.jpg')}}" class="d-block w-100">
-                                                            <div class="carousel-caption d-none d-md-block">
-                                                            </div>
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                        <img src="{{asset('img/dest-6.jpg')}}" class="d-block w-100">
+                                                        <div class="carousel-caption d-none d-md-block">
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-3">
+                                            </div> -->
+
+                                            <!-- <div class="col-md-3">
                                                 <div class="row">
                                                     @for($i =0; $i < 3;$i++) 
                                                         <div id="carousel-dest-1" class="carousel carousel-dark slide" data-bs-ride="carousel">
@@ -273,13 +278,38 @@
                                                         <p></p>
                                                     @endfor
                                                 </div>
+                                            </div> -->
+                                        </div>
+                                        <hr style="width:100%; position:relative; top:20px">
+                                    </div>
+                                    <div id="container-info" class="container py-4" style="position:relative; bottom:25px;">
+                                        <div class="row">
+                                            <div class="col-md-3" style="border-right: 0.5px solid #d3d3d3;">
+                                                <div style="padding-left: 50px; padding-top: 8vh;">
+                                                    <span style="position: relative; bottom:10px;">
+                                                        <img src="{{asset('img/star.png')}}" id="star-img-info"> <a style="position: relative; left:5px; top:4px; font-size:20px;">4.5 Rating</a>
+                                                    </span> 
+                                                    <p class="card-text" style="position: relative;left: 35px; bottom: 0px"><small class="text-muted">(2049 reviews)</small></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div style="padding-left: 10px;">
+                                                    <h3>Description</h3>
+                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, 
+                                                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker 
+                                                    including versions of Lorem Ipsum.</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="container py-4">
-                                        <div class="tab-content">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        <div class="row">
+                                        <hr style="width:100%; position:relative; bottom:10px">
+                                            <div class="tab-content" style="text-align-last:justify;">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </section>
@@ -291,6 +321,17 @@
         </section>
     </div>
 </div>
+<nav aria-label="Page-navigation">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav>
 
 
 <script>

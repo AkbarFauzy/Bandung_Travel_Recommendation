@@ -23,22 +23,29 @@
     border-radius: 10px 0px 0px 10px;
 }
 
+#img-modal {
+    width : 80vh;
+    position: relative;
+    left: 17vh;
+}
+
+/* 
 #carousel-dest {
     position: relative;
-    width : 85vh;
+    width : 79.5vh;
     left: 20px;
 }
 
 #carousel-dest-1 {
     position: relative;
     right: 10px;
-    width: 29vh;
+    width: 27vh;
 }
 
 .carousel-inner {
     border-radius: 10px;
     box-shadow: 0.2rem 0.2rem 0.2rem rgba(0, 0, 0, 0.219);
-}
+} */
 
 .card, .mb3 {
     padding: 0px;
@@ -111,7 +118,12 @@
 
 #star-img {
     height: 20px;
-    width: 48px;
+    width: 25px;
+}
+
+#star-img-info{
+    height: 25px;
+    width: 24px;
 }
 
 #position-img {
