@@ -28,7 +28,7 @@
 
 .card, .mb3 {
     padding: 0px;
-    box-shadow: 0 0 0.9375em rgba(0, 0, 0, 0.219);
+    box-shadow: 0 0 0.2em rgba(0, 0, 0, 0.219);
     border-radius: 10px;
     display: flex;
 }
@@ -264,31 +264,4 @@
 .vertical .content.fade.dstepper-none {
     visibility: hidden;
 }
-  
-.myBox {
-    box-shadow: 2px 2px 2px 2px #888888;
-    overflow: scroll;
-    height: 60vh;
-    width: 150vh;
-    padding: 10px 0px 0px 40px;
-    align-items: center;
-    justify-content: center;
-    }
-    
-::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-}
-::-webkit-scrollbar-track {
-    border: 1px solid #B1D0E0;
-    border-radius: 10px;
-}
 
-::-webkit-scrollbar-thumb {
-    background: #B1D0E0;  
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #B1D0E0;  
-}
