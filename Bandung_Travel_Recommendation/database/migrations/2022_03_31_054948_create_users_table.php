@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('email', 100)->unique();
             $table->string('password', 100);
             $table->string('name', 100);
-            $table->string('role', ['admin', 'member'])->default("member")->nullable();
+            $table->enum('role', ['admin', 'member'])->default('member')->nullable();
             $table->string('api_token')->nullable();
             $table->timestamps();
         });

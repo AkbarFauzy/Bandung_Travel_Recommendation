@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('places', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100);
-            $table->unsignedBigInteger('type_place_id');
+            $table->integer('type_place_id')->unsigned();
             $table->float('rate', 2, 2)->default(0.0)->nullable();
             $table->text('description')->nullable();
             $table->text('image_name')->nullable();
