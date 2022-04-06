@@ -14,6 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// General Place
+Route::post('/place/add-place-type', "PlaceController@addPlaceType");
+Route::post('/place/edit-place-type', "PlaceController@editPlaceType");
+Route::delete('/place/delete-place-type', "PlaceController@deletePlaceType");
+Route::get('/place/get-place-types', "PlaceController@getPlaceTypes");
+
+Route::post('/place/add-place', "PlaceController@addPlace");
+Route::post('/place/edit-place', "PlaceController@editPlace");
+Route::delete('/place/delete-place', "PlaceController@deletePlace");
+Route::get('/place/get-places', "PlaceController@getPlaces");
+
+// Hotel
+Route::get('/place/get-hotels', "PlaceController@getHotels");
+
+// Destinastion
+Route::get('/place/get-destinations', "PlaceController@getDestinations");
+Route::get('/place/get-destination-types', "PlaceController@getDestinationTypes");

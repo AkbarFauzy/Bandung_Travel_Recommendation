@@ -17,7 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name', 100);
             $table->integer('type_place_id')->unsigned();
-            $table->float('rate', 2, 2)->default(0.0)->nullable();
+            $table->float('rate', 4, 2)->default(0.0)->nullable();
             $table->text('description')->nullable();
             $table->text('image_name')->nullable();
             $table->text('alamat');
