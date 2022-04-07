@@ -51,6 +51,7 @@
                             <div id="button-checkout">
                                 <div class="btn_view">
                                     <a id="next-btn" onclick="show_hide();" href="#" class="btn btn-primary">Next</a>
+                                    <a id="back-btn" onclick="revert();" href="#" class="btn btn-primary" style="display: none;">Reset</a>
                                     <a id="check-btn" onclick="show_hide();" href="#" class="btn btn-primary" style="display: none;">Checkout</a>
                                     <a id="save-btn" onclick="show_hide();" href="#" class="btn btn-primary" style="display: none;">Save</a>
                                     <p id="msg-success" href="#" style="color: green; display: none; text-decoration : none;">Berhasil disimpan</p>
@@ -337,6 +338,7 @@
 <script>
     function show_hide() {
         var next = document.getElementById("next-btn");
+        var back = document.getElementById('back-btn')
         var check = document.getElementById("check-btn");
         var save = document.getElementById("save-btn");
         var msg = document.getElementById("msg-success")
@@ -345,6 +347,7 @@
         if (save.style.display === "none") {
             if (check.style.display === "none") {
                 check.style.display = "inline-block";
+                back.style.display = "inline-block"
                 next.style.display = "none"
                 active2.classList.add("active");
             } else {
@@ -354,9 +357,33 @@
             }
         } else {
             msg.style.display = "inline-block"
+            back.style.display = "none"
             save.style.display = "none"
         }
 
+    }
+
+    function revert() {
+        var next = document.getElementById("next-btn");
+        var back = document.getElementById('back-btn')
+        var check = document.getElementById("check-btn");
+        var save = document.getElementById("save-btn");
+        var msg = document.getElementById("msg-success")
+        var active2 = document.getElementById("stepper2");
+        var active3 = document.getElementById("stepper3");
+        if (active3.classList.contains("active")){
+            active2.classList.remove("active");
+            active3.classList.remove("active");
+            back.style.display = "none"
+            next.style.display = "inline-block"
+            save.style.display = "none"
+        }    
+        else{
+            active2.classList.remove("active");
+            check.style.display = "none"
+            back.style.display = "none"
+            next.style.display = "inline-block"
+        }
     }
 </script>
 
