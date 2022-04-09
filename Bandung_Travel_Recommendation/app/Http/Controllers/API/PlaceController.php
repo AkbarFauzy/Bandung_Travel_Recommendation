@@ -131,6 +131,27 @@ class PlaceController extends Controller
         ], 200, $this->headers);
     }
 
+    public function getPlaceTypeById(Request $req)
+    {
+        try {
+            $id = $req->input('id');
+            $data = PlaceType::findOrFail($id);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Get Place Type Failed!',
+                'errormsg' => $exception->getMessage(),
+                'data' => ''
+            ], 404, $this->headers);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Get Place Type Success!',
+            'data' => $data
+        ], 200, $this->headers);
+    }
+
     // --------------- Place ---------------
     public function addPlace(Request $req)
     {
@@ -312,6 +333,30 @@ class PlaceController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Get Places Success!',
+            'data' => $data
+        ], 200, $this->headers);
+    }
+
+    public function getPlaceById(Request $req)
+    {
+        try {
+            $id = $req->input('id');
+            $data = Place::with('place_types')
+            ->select(['places.*',  DB::raw("(CASE WHEN i.view IS NOT NULL THEN i.view ELSE 0 END) as view")])
+            ->leftjoin(DB::raw("(SELECT place_id, COUNT(*) as view FROM user_interact_logs GROUP BY user_interact_logs.place_id) as i"), 'i.place_id', '=', 'places.id');
+            $data = $data->findOrFail($id);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Get Place Failed!',
+                'errormsg' => $exception->getMessage(),
+                'data' => ''
+            ], 404, $this->headers);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Get Place Success!',
             'data' => $data
         ], 200, $this->headers);
     }

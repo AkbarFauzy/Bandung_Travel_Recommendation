@@ -19,15 +19,17 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // General Place
-Route::post('/place/add-place-type', "PlaceController@addPlaceType");
-Route::post('/place/edit-place-type', "PlaceController@editPlaceType");
-Route::delete('/place/delete-place-type', "PlaceController@deletePlaceType");
-Route::get('/place/get-place-types', "PlaceController@getPlaceTypes");
+Route::post('/place/type/add', "PlaceController@addPlaceType");
+Route::post('/place/type/edit', "PlaceController@editPlaceType");
+Route::delete('/place/type/delete', "PlaceController@deletePlaceType");
+Route::get('/place/type/get-all', "PlaceController@getPlaceTypes");
+Route::get('/place/type/get-by-id', "PlaceController@getPlaceTypeById");
 
-Route::post('/place/add-place', "PlaceController@addPlace");
-Route::post('/place/edit-place', "PlaceController@editPlace");
-Route::delete('/place/delete-place', "PlaceController@deletePlace");
-Route::get('/place/get-places', "PlaceController@getPlaces");
+Route::post('/place/add', "PlaceController@addPlace");
+Route::post('/place/edit', "PlaceController@editPlace");
+Route::delete('/place/delete', "PlaceController@deletePlace");
+Route::get('/place/get-all', "PlaceController@getPlaces");
+Route::get('/place/get-by-id', "PlaceController@getPlaceById");
 
 // Hotel
 Route::get('/place/get-hotels', "PlaceController@getHotels");
