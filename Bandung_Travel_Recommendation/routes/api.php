@@ -18,6 +18,21 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
+// Auth
+Route::post('/auth/login', "AuthController@login");
+Route::post('/auth/register', "AuthController@register");
+Route::delete('/auth/logout', "AuthController@logout")->middleware('auth:sanctum');
+
+// User
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/user/edit', "UserController@edit");
+    Route::get('/user/get-information', "UserController@getInformation");
+    Route::post('/user/add-favorite-place', "UserController@addFavoritePlace");
+    Route::post('/user/delete-favorite-place', "UserController@deleteFavoritePlace");
+    Route::get('/user/get-favorite-places', "UserController@getFavoritePlaces");
+});
+
+
 // General Place
 Route::post('/place/type/add', "PlaceController@addPlaceType");
 Route::post('/place/type/edit', "PlaceController@editPlaceType");

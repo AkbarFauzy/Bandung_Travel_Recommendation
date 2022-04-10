@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Library\ApiHelpers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -14,9 +15,7 @@ use App\Models\UserInteractLogs;
 
 class PlaceController extends Controller
 {
-    private $headers = [
-        'Content-Type' => 'application/json'
-    ];
+    use ApiHelpers;
     // General Place
     // -----------------------------------------------------------------------------
     // -----------------------------------------------------------------------------
@@ -35,19 +34,9 @@ class PlaceController extends Controller
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollback();
-            return response()->json([
-                'success' => false,
-                'message' => 'Add Place Type Failed!',
-                'errormsg' => $exception->getMessage(),
-                'data' => ''
-            ], 404, $this->headers);
+            return $this->onError('Add Place Type Failed!', $exception->getMessage());
         }
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Add Place Type Success!',
-            'data' => $data
-        ], 200, $this->headers);
+        return $this->onSuccess($data, 'Add Place Type Success!');
     }
 
     
@@ -68,19 +57,10 @@ class PlaceController extends Controller
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollback();
-            return response()->json([
-                'success' => false,
-                'message' => 'Update Place Type Failed!',
-                'errormsg' => $exception->getMessage(),
-                'data' => ''
-            ], 404, $this->headers);
+            return $this->onError('Update Place Type Failed!', $exception->getMessage());
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Update Place Type Success!',
-            'data' => $data
-        ], 200, $this->headers);
+        return $this->onSuccess($data, 'Update Place Type Success!');
     }
 
     public function deletePlaceType(Request $req)
@@ -96,19 +76,10 @@ class PlaceController extends Controller
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollback();
-            return response()->json([
-                'success' => false,
-                'message' => 'Delete Place Type Failed!',
-                'errormsg' => $exception->getMessage(),
-                'data' => ''
-            ], 404, $this->headers);
+            return $this->onError('Delete Place Type Failed!', $exception->getMessage());
         }
-
-        return response()->json([
-            'success' => true,
-            'message' => 'Delete Place Type Success!',
-            'data' => null
-        ], 200, $this->headers);
+        
+        return $this->onSuccess('', 'Delete Place Type Success!');
     }
 
     public function getPlaceTypes(Request $req)
@@ -116,19 +87,10 @@ class PlaceController extends Controller
         try {
             $data = PlaceType::get();
         } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Get Place Types Failed!',
-                'errormsg' => $exception->getMessage(),
-                'data' => ''
-            ], 404, $this->headers);
+            return $this->onError('Get Place Types Failed!', $exception->getMessage());
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Get Place Types Success!',
-            'data' => $data
-        ], 200, $this->headers);
+        return $this->onSuccess($data, 'Get Place Types Success!');
     }
 
     public function getPlaceTypeById(Request $req)
@@ -137,19 +99,10 @@ class PlaceController extends Controller
             $id = $req->input('id');
             $data = PlaceType::findOrFail($id);
         } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Get Place Type Failed!',
-                'errormsg' => $exception->getMessage(),
-                'data' => ''
-            ], 404, $this->headers);
+            return $this->onError('Get Place Type Failed!', $exception->getMessage());
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Get Place Type Success!',
-            'data' => $data
-        ], 200, $this->headers);
+        return $this->onSuccess($data, 'Get Place Type Success!');
     }
 
     // --------------- Place ---------------
@@ -190,19 +143,10 @@ class PlaceController extends Controller
             $file->move(public_path('img/destination'), $image_name);
         } catch (\Exception $exception) {
             DB::rollback();
-            return response()->json([
-                'success' => false,
-                'message' => 'Add Place Type Failed!',
-                'errormsg' => $exception->getMessage(),
-                'data' => ''
-            ], 404, $this->headers);
+            return $this->onError('Add Place Type Failed!', $exception->getMessage());
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Add Place Type Success!',
-            'data' => $data
-        ], 200, $this->headers);
+        return $this->onSuccess($data, 'Add Place Type Success!');
     }
 
     public function editPlace(Request $req)
@@ -250,19 +194,10 @@ class PlaceController extends Controller
             $file->move(public_path('img/destination'), $image_name);
         } catch (\Exception $exception) {
             DB::rollback();
-            return response()->json([
-                'success' => false,
-                'message' => 'Update Place Failed!',
-                'errormsg' => $exception->getMessage(),
-                'data' => ''
-            ], 404, $this->headers);
+            return $this->onError('Update Place Failed!', $exception->getMessage());
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Update Place Success!',
-            'data' => $data
-        ], 200, $this->headers);
+        return $this->onSuccess($data, 'Update Place Success!');
     }
 
     public function deletePlace(Request $req)
@@ -283,19 +218,10 @@ class PlaceController extends Controller
             }
         } catch (\Exception $exception) {
             DB::rollback();
-            return response()->json([
-                'success' => false,
-                'message' => 'Delete Place Failed!',
-                'errormsg' => $exception->getMessage(),
-                'data' => ''
-            ], 404, $this->headers);
+            return $this->onError('Delete Place Failed!', $exception->getMessage());
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Delete Place Success!',
-            'data' => null
-        ], 200, $this->headers);
+        return $this->onSuccess('', 'Delete Place Success!');
     }
 
     public function getPlaces(Request $req)
@@ -322,19 +248,10 @@ class PlaceController extends Controller
             }
             $data = $data->get();
         } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Get Places Failed!',
-                'errormsg' => $exception->getMessage(),
-                'data' => ''
-            ], 404, $this->headers);
+            return $this->onError('Get Places Failed!', $exception->getMessage());
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Get Places Success!',
-            'data' => $data
-        ], 200, $this->headers);
+        return $this->onSuccess($data, 'Get Places Success!');
     }
 
     public function getPlaceById(Request $req)
@@ -346,19 +263,10 @@ class PlaceController extends Controller
             ->leftjoin(DB::raw("(SELECT place_id, COUNT(*) as view FROM user_interact_logs GROUP BY user_interact_logs.place_id) as i"), 'i.place_id', '=', 'places.id');
             $data = $data->findOrFail($id);
         } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Get Place Failed!',
-                'errormsg' => $exception->getMessage(),
-                'data' => ''
-            ], 404, $this->headers);
+            return $this->onError('Get Place Failed!', $exception->getMessage());
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Get Place Success!',
-            'data' => $data
-        ], 200, $this->headers);
+        return $this->onSuccess($data, 'Get Place Success!');
     }
 
     // Hotel
@@ -383,19 +291,10 @@ class PlaceController extends Controller
             $data = $data->get();
             // ->makeHidden(['type_place_id']);-
         } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Get Hotels Failed!',
-                'errormsg' => $exception->getMessage(),
-                'data' => ''
-            ], 404, $this->headers);
+            return $this->onError('Get Hotels Failed!', $exception->getMessage());
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Get Hotels Success!',
-            'data' => $data
-        ], 200, $this->headers);
+        return $this->onSuccess($data, 'Get Hotels Success!');
     }
     
     
@@ -428,19 +327,10 @@ class PlaceController extends Controller
             }
             $data = $data->get();
         } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Get Destinations Failed!',
-                'errormsg' => $exception->getMessage(),
-                'data' => ''
-            ], 404, $this->headers);
+            return $this->onError('Get Destinations Failed!', $exception->getMessage());
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Get Destinations Success!',
-            'data' => $data
-        ], 200, $this->headers);
+        return $this->onSuccess($data, 'Get Destinations Success!');
     }
 
     
@@ -449,18 +339,9 @@ class PlaceController extends Controller
         try {
             $data = PlaceType::where('name', '!=', "Hotel")->get();
         } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Get Destination Types Failed!',
-                'errormsg' => $exception->getMessage(),
-                'data' => ''
-            ], 404, $this->headers);
+        return $this->onError('Get Destination Types Failed!', $exception->getMessage());
         }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Get Destination Types Success!',
-            'data' => $data
-        ], 200, $this->headers);
+        return $this->onSuccess($data, 'Get Destination Types Success!');
     }
 }
