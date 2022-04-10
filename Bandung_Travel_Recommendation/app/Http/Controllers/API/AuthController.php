@@ -21,7 +21,7 @@ class AuthController extends Controller
         $role = "member";
         try {
             $req->validate([
-                'inputEmail' => 'required|email:rfc,dns',
+                'inputEmail' => 'required|email',
                 'inputPassword' => 'required',
                 'inputName' => 'required',
             ]);
@@ -41,7 +41,7 @@ class AuthController extends Controller
             return $this->onError('User Register Failed!', $exception->getMessage());
         }
 
-        return $this->onSuccess($data, 'User Register Failed!');
+        return $this->onSuccess($data, 'User Register Success!');
     }
 
     public function login(Request $req)
@@ -67,8 +67,6 @@ class AuthController extends Controller
             'token' => $token
         ], 'User Login Success!');
     }
-
-    
 
     public function logout(Request $req)
     {

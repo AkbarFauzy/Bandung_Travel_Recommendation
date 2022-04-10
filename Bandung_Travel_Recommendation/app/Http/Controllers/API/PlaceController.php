@@ -40,14 +40,14 @@ class PlaceController extends Controller
     }
 
     
-    public function editPlaceType(Request $req)
+    public function editPlaceType(Request $req, $id)
     {
         try {
             $req->validate([
-                'id' => 'required',
+                // 'id' => 'required',
                 'inputName' => 'required'
             ]);
-            $id = $req->input('id');
+            // $id = $req->input('id');
 
             DB::beginTransaction();
             $data = PlaceType::findOrFail($id);
@@ -63,13 +63,13 @@ class PlaceController extends Controller
         return $this->onSuccess($data, 'Update Place Type Success!');
     }
 
-    public function deletePlaceType(Request $req)
+    public function deletePlaceType($id)
     {
         try {
-            $req->validate([
-                'id' => 'required'
-            ]);
-            $id = $req->input('id');
+            // $req->validate([
+            //     'id' => 'required'
+            // ]);
+            // $id = $req->input('id');
 
             DB::beginTransaction();
             $data = PlaceType::findOrFail($id)->delete();
@@ -82,7 +82,7 @@ class PlaceController extends Controller
         return $this->onSuccess('', 'Delete Place Type Success!');
     }
 
-    public function getPlaceTypes(Request $req)
+    public function getPlaceTypes()
     {
         try {
             $data = PlaceType::get();
@@ -93,10 +93,10 @@ class PlaceController extends Controller
         return $this->onSuccess($data, 'Get Place Types Success!');
     }
 
-    public function getPlaceTypeById(Request $req)
+    public function getPlaceTypeById($id)
     {
         try {
-            $id = $req->input('id');
+            // $id = $req->input('id');
             $data = PlaceType::findOrFail($id);
         } catch (\Exception $exception) {
             return $this->onError('Get Place Type Failed!', $exception->getMessage());
@@ -149,11 +149,11 @@ class PlaceController extends Controller
         return $this->onSuccess($data, 'Add Place Type Success!');
     }
 
-    public function editPlace(Request $req)
+    public function editPlace(Request $req, $id)
     {
         try {
             $req->validate([
-                'id' => 'required',
+                // 'id' => 'required',
                 'inputName' => 'required',
                 'inputTypePlaceId' => 'required',
                 'inputRate' => 'required',
@@ -170,7 +170,7 @@ class PlaceController extends Controller
             $file = $req->file('inputImage');
             $image_name = Str::uuid().'_'.$file->getClientOriginalName();
 
-            $id = $req->input('id');
+            // $id = $req->input('id');
 
             DB::beginTransaction();
             $data = Place::with('place_types')->findOrFail($id);
@@ -200,13 +200,13 @@ class PlaceController extends Controller
         return $this->onSuccess($data, 'Update Place Success!');
     }
 
-    public function deletePlace(Request $req)
+    public function deletePlace($id)
     {
         try {
-            $req->validate([
-                'id' => 'required'
-            ]);
-            $id = $req->input('id');
+            // $req->validate([
+            //     'id' => 'required'
+            // ]);
+            // $id = $req->input('id');
 
             DB::beginTransaction();
             $data = Place::findOrFail($id);
@@ -254,10 +254,10 @@ class PlaceController extends Controller
         return $this->onSuccess($data, 'Get Places Success!');
     }
 
-    public function getPlaceById(Request $req)
+    public function getPlaceById($id)
     {
         try {
-            $id = $req->input('id');
+            // $id = $req->input('id');
             $data = Place::with('place_types')
             ->select(['places.*',  DB::raw("(CASE WHEN i.view IS NOT NULL THEN i.view ELSE 0 END) as view")])
             ->leftjoin(DB::raw("(SELECT place_id, COUNT(*) as view FROM user_interact_logs GROUP BY user_interact_logs.place_id) as i"), 'i.place_id', '=', 'places.id');
@@ -297,7 +297,6 @@ class PlaceController extends Controller
         return $this->onSuccess($data, 'Get Hotels Success!');
     }
     
-    
     // Destination
     // -----------------------------------------------------------------------------
     // -----------------------------------------------------------------------------
@@ -333,7 +332,6 @@ class PlaceController extends Controller
         return $this->onSuccess($data, 'Get Destinations Success!');
     }
 
-    
     public function getDestinationTypes(Request $req)
     {
         try {

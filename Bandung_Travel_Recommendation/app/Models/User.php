@@ -23,6 +23,18 @@ class User extends Authenticatable
         'password', 'remember_token'
     ];
 
+    public function isAdmin()
+    {
+        if($this->role == 'admin')
+        { 
+            return true; 
+        } 
+        else 
+        { 
+            return false; 
+        }
+    }
+
     public function favorites()
     {
         return $this->hasMany(Favorite::class, 'user_id', 'id');

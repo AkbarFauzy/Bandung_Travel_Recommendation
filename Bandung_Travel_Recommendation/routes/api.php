@@ -23,32 +23,32 @@ Route::post('/auth/login', "AuthController@login");
 Route::post('/auth/register', "AuthController@register");
 Route::delete('/auth/logout', "AuthController@logout")->middleware('auth:sanctum');
 
-// User
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/user/edit', "UserController@edit");
-    Route::get('/user/get-information', "UserController@getInformation");
-    Route::post('/user/add-favorite-place', "UserController@addFavoritePlace");
-    Route::post('/user/delete-favorite-place', "UserController@deleteFavoritePlace");
-    Route::get('/user/get-favorite-places', "UserController@getFavoritePlaces");
-});
-
-
-// General Place
-Route::post('/place/type/add', "PlaceController@addPlaceType");
-Route::post('/place/type/edit', "PlaceController@editPlaceType");
-Route::delete('/place/type/delete', "PlaceController@deletePlaceType");
-Route::get('/place/type/get-all', "PlaceController@getPlaceTypes");
-Route::get('/place/type/get-by-id', "PlaceController@getPlaceTypeById");
-
-Route::post('/place/add', "PlaceController@addPlace");
-Route::post('/place/edit', "PlaceController@editPlace");
-Route::delete('/place/delete', "PlaceController@deletePlace");
-Route::get('/place/get-all', "PlaceController@getPlaces");
-Route::get('/place/get-by-id', "PlaceController@getPlaceById");
-
 // Hotel
 Route::get('/place/get-hotels', "PlaceController@getHotels");
 
 // Destinastion
 Route::get('/place/get-destinations', "PlaceController@getDestinations");
 Route::get('/place/get-destination-types', "PlaceController@getDestinationTypes");
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    // User
+    Route::post('/user/edit', "UserController@edit");
+    Route::get('/user/get-information', "UserController@getInformation");
+    Route::post('/user/favorite-place/add', "UserController@addFavoritePlace");
+    Route::delete('/user/favorite-place/delete/{id}', "UserController@deleteFavoritePlace");
+    Route::get('/user/favorite-place/get-all', "UserController@getFavoritePlaces");
+    Route::get('/user/touch-place/{id}', "UserController@touchPlace");
+    
+    // General Place
+    Route::post('/place/type/add', "PlaceController@addPlaceType")->middleware('role');
+    Route::post('/place/type/edit/{id}', "PlaceController@editPlaceType")->middleware('role');
+    Route::delete('/place/type/delete/{id}', "PlaceController@deletePlaceType")->middleware('role');
+    Route::get('/place/type/get-all', "PlaceController@getPlaceTypes")->middleware('role');
+    Route::get('/place/type/{id}', "PlaceController@getPlaceTypeById")->middleware('role');
+    
+    Route::post('/place/add', "PlaceController@addPlace")->middleware('role');
+    Route::post('/place/edit/{id}', "PlaceController@editPlace")->middleware('role');
+    Route::delete('/place/delete/{id}', "PlaceController@deletePlace")->middleware('role');
+    Route::get('/place/get-all', "PlaceController@getPlaces")->middleware('role');
+    Route::get('/place/{id}', "PlaceController@getPlaceById")->middleware('role');
+});
