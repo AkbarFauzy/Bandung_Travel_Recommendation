@@ -23,4 +23,8 @@ class Favorite extends Model
     {
         return $this->hasMany(FavoritePlaceItems::class, 'favorite_id', 'id');
     }
+    public function places()
+    {
+        return $this->belongsToMany(Place::class, FavoritePlaceItems::class, 'favorite_id', 'place_id');
+    }
 }
