@@ -29,7 +29,7 @@
             <ul class="navbar-nav ms-auto d-flex align-items-center">
               <li>
                 <a class="profile-pic" href="#">
-                  <img src="plugins/images/users/varun.jpg" alt="user-img" width="36" class="img-circle"><span class="text-white font-medium">Steave</span></a>
+                  <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" alt="user-img" width="36" class="img-circle"><span class="text-white font-medium">Steave</span></a>
               </li>
             </ul>
           </div>
@@ -42,19 +42,14 @@
       <a class="text-center p-0" style="margin-bottom:50px;margin-top: 30px;border:none;"><h1 style="color:#edf1f5">LOGO</h1></a>
       <ul style="padding-left:0px">
         <li><a href=" {{route('admin.dashboard')}}" class="{{ (request()->is('admin')) ? 'active' : '' }}"><i class="bi bi-house"></i>&nbsp;&nbsp;&nbsp;Dashboard</a></li>
-        <li><a href=" {{route('admin.destination')}}" class="{{ (request()->is('admin/destination*')) ? 'active' : '' }}">Destination</a></li>
-        <li><a href=" {{route('admin.destinationtype')}}" class="{{ (request()->is('admin/type*')) ? 'active' : '' }}">Destination Type</a></li>
-        <li><a href=" {{route('admin.users')}}" class="{{ (request()->is('admin/users*')) ? 'active' : '' }}">Users</a></li>
-
+        <li><a href=" {{route('admin.destination')}}" class="{{ (request()->is('admin/destination*')) ? 'active' : '' }}"><i class="bi bi-geo-alt"></i>&nbsp;&nbsp;&nbsp;Destination</a></li>
+        <li><a href=" {{route('admin.destinationtype')}}" class="{{ (request()->is('admin/type*')) ? 'active' : '' }}"><i class="bi bi-map"></i>&nbsp;&nbsp;&nbsp;Destination Type</a></li>
       </ul>
       <button href="#" class="logout-btn">Logout&nbsp;&nbsp;&nbsp;<i class="bi bi-door-closed"></i></button>
     </div>
 
     <div id="main">
       <button class="sidebar-toggle" onclick="closeNav()" id="sidebar-btn">&#9776;</button>
-      <div class="main-title">
-        <p>Home</p>
-      </div>
       <div class="main-container">
         @yield('content')
       </div>

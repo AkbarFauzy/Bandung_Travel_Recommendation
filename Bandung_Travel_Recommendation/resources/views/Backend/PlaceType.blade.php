@@ -12,12 +12,12 @@
             <div class="col">
                 <div class="row breadcrumbs-top">
                     <div class="col-12">
-                        <h2 class="content-header-title float-left mb-0">Destinations</h2>
+                        <h2 class="content-header-title float-left mb-0">Place Types</h2>
                     </div>
                 </div>
             </div>
             <div class="col">
-                <button style="float: right;" type="button" id="btn-create" name="tambah" class="btn btn-success btn-md">Add Destination</button>
+                <button style="float: right;" type="button" id="btn-create" name="tambah" class="btn btn-success btn-md">Add New Place Type</button>
             </div>
         </div>
         <hr>
@@ -26,8 +26,6 @@
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>Type</th>
-                    <th>Description</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -51,30 +49,20 @@
 </script>
 <script>
 
-
 $(function() {
-    // var loadFile = function(event) {
-    //   var output = document.getElementById('preview-img');
-    //   output.src = URL.createObjectURL(event.target.files[0]);
-    //   output.onload = function() {
-    //     URL.revokeObjectURL(output.src) // free memory
-    //   }
-    // };
     $('#datatables-ajax').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{route('admin.destination')}}",
+        ajax: "{{route('admin.destinationtype')}}",
         columns: [
             { data: 'id', name: 'id' },
             { data: 'name', name: 'name' },
-            { data: 'type_place_id', name: 'type' },
-            { data: 'description', name: 'description', width:'50%' },
             {
-                data: 'action',
-                name: 'action',
-                orderable: false,
-                searchable: false,
-                width:'20%'
+              data: 'action',
+              name: 'action',
+              orderable: false,
+              searchable: false,
+              width:'20%',
             },
         ]
     });
@@ -83,7 +71,7 @@ $(function() {
 
     }).on('click', '#btn-create', function(){
       let dialog = bootbox.dialog({
-        title:'Create New Place',
+        title:'Create New Place Type',
         message: '<center><div class="preloader"><div class="spinner-layer pl-red"><div class="circle-clipper left"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></center>'
       });
 
@@ -94,28 +82,9 @@ $(function() {
             dialog.find('.modal-content > .modal-body').html(this.responseText);
           }
         };
-        req.open("GET", '{{route("admin.destination.form")}}', true);
+        req.open("GET", '{{route("admin.destinationtype.form")}}', true);
         req.send();
       });
-    }).on('click', '#btn-view', function(){
-      let id = $(this).data('id');
-        dialog = bootbox.dialog({
-          title: "View Place",
-          size: 'large',
-          message: '<center><div class="preloader"><div class="spinner-layer pl-red"><div class="circle-clipper left"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></center>',
-        })
-
-      dialog.init(function(e){
-        let req = new XMLHttpRequest();
-        req.onreadystatechange = function(){
-          if (this.readyState == 4 && this.status == 200) {
-            dialog.find('.modal-content > .modal-body').html(this.responseText);
-          }
-        };
-        req.open("GET", '{{route("admin.destination.form")}}', true);
-        req.send();
-      })
-
     }).on('click', '#btn-update', function(){
       let id = $(this).data('id');
         dialog = bootbox.dialog({
@@ -129,7 +98,7 @@ $(function() {
               dialog.find('.modal-content > .modal-body').html(this.responseText);
             }
           };
-          req.open("GET", '{{route("admin.destination.form.edit",'')}}/'+id, true);
+          req.open("GET", '{{route("admin.destinationtype.form.edit",'')}}/'+id, true);
           req.send();
         })
     }).on('click', '#btn-delete', function(e){
@@ -145,7 +114,7 @@ $(function() {
         }).then((result) => {
           if (result.isConfirmed) {
             $.ajax({
-              url:"{{route('admin.destination.delete','')}}/"+id,
+              url:"{{route('admin.destinationtype.delete','')}}/"+id,
               headers:{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
               },
@@ -193,7 +162,7 @@ $(function() {
         contentType: false,
         processData: false,
         success: function(response){
-          if(response){
+          if(JSON.parse(response)['success']){
             bootbox.hideAll();
             $('#datatables-ajax').DataTable().ajax.reload();
             Swal.fire({

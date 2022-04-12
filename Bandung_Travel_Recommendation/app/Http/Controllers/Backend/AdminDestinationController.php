@@ -37,7 +37,7 @@ class AdminDestinationController extends Controller
     $APIDestinationTypes = Http::get(env('API_DOMAIN').'/api/place/type/get-all');
     $destinationData = json_decode($APIDestinationTypes->body())->data;
     if($id != null){
-      $API = Http::get(env('API_DOMAIN').'/api/place/get-by-id/'.$id);
+      $API = Http::get(env('API_DOMAIN').'/api/place/'.$id);
       $data = json_decode($API->body())->data;
     }
     return view('Backend/Form/DestinationForm')
@@ -46,16 +46,17 @@ class AdminDestinationController extends Controller
   }
 
   public function create(Request $request){
-    // $names = [];
-    // if($request->hasFile('inputImage')) {
-    //   foreach ($request->file('inputImage') as $file) {
-    //     if(file_exists($file)){
-    //         $name= $file->getClientOriginalName();
-    //         $names[] = $name;
-    //     }
-    //   }
-    // }
-    $response = Http::post(env('API_DOMAIN').'/api/place/add', $request);
+    $response = Http::withToken(env('API_KEY'))
+    ->attach('inputImage', fopen($request->inputImage, 'r'))
+    ->post(env('API_DOMAIN').'/api/place/add', [
+        'inputName' => $request->inputName,
+        'inputDescription' => $request->inputDescription,
+        'inputTypePlaceId' => $request->inputTypePlaceId,
+        'inputLongitude' => $request->inputLongitude,
+        'inputLatitude' => $request->inputLatitude,
+        'inputRate'=>$request->inputRate,
+        'inputAlamat'=>$request->inputAlamat,
+      ]);
     return $response;
   }
 
@@ -65,8 +66,8 @@ class AdminDestinationController extends Controller
   }
 
   public function delete($id){
-    $response = Http::asForm()->post(env('API_DOMAIN').'/api/place/delete/', $id);
-    return $response;
+    $response = Http::delete(env('API_DOMAIN').'/api/place/delete/'.$id);
+    return $response->body();
   }
 
 }
