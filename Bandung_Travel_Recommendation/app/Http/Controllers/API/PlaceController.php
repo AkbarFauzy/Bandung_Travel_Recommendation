@@ -26,7 +26,7 @@ class PlaceController extends Controller
             $req->validate([
                 'inputName' => 'required'
             ]);
-            
+
             DB::beginTransaction();
             $data = PlaceType::create([
                 'name' => $req->input('inputName')
@@ -39,7 +39,7 @@ class PlaceController extends Controller
         return $this->onSuccess($data, 'Add Place Type Success!');
     }
 
-    
+
     public function editPlaceType(Request $req, $id)
     {
         try {
@@ -78,7 +78,7 @@ class PlaceController extends Controller
             DB::rollback();
             return $this->onError('Delete Place Type Failed!', $exception->getMessage());
         }
-        
+
         return $this->onSuccess('', 'Delete Place Type Success!');
     }
 
@@ -304,11 +304,11 @@ class PlaceController extends Controller
 
         return $this->onSuccess($data, 'Get Hotels Success!');
     }
-    
+
     // Destination
     // -----------------------------------------------------------------------------
     // -----------------------------------------------------------------------------
-    
+
     public function getDestinations(Request $req)
     {
         try {
