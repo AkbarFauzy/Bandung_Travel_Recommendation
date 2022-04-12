@@ -125,7 +125,11 @@ class PlaceController extends Controller
             ]);
 
             $file = $req->file('inputImage');
-            $image_name = Str::uuid().'_'.$file->getClientOriginalName();
+            if($file->extension() == 'tmp'){
+                $image_name = Str::uuid().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME).'.jpg';
+            }else{
+                $image_name = Str::uuid().'_'.$file->getClientOriginalName();
+            }
 
             DB::beginTransaction();
             $data = Place::create([
@@ -168,7 +172,11 @@ class PlaceController extends Controller
                 'inputImage.max' => "Ukuran file maksimal 500KB",
             ]);
             $file = $req->file('inputImage');
-            $image_name = Str::uuid().'_'.$file->getClientOriginalName();
+            if($file->extension() == 'tmp'){
+                $image_name = Str::uuid().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME).'.jpg';
+            }else{
+                $image_name = Str::uuid().'_'.$file->getClientOriginalName();
+            }
 
             // $id = $req->input('id');
 
