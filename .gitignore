@@ -21,3 +21,6 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+Bandung_Travel_Recommendation/.env.example
+Bandung_Travel_Recommendation/composer.lock
+Bandung_Travel_Recommendation/composer.lock

@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('/Frontend/landing-page');
 });
 
+Route::get('/destination', function () {
+    return view('frontend/Destination');
+});
+
 Route::get('/admin/', [AdminDashboardController::class, 'view'])->name('admin.dashboard');
 
 Route::get('/admin/destination', [AdminDestinationController::class, 'view'])->name('admin.destination');
@@ -38,3 +42,4 @@ Route::get('/admin/type/form/{id}', [AdminPlaceTypeController::class, 'loadForm'
 
 Route::get('/admin/users', [AdminUsersController::class, 'view'])->name('admin.users');
 Route::get('/admin/users', [AdminUsersController::class, 'view'])->name('admin.users');
+
