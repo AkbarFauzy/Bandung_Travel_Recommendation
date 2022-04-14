@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\LoginController;
+use App\Http\Controllers\Frontend\LandingPageController;
 use App\Http\Controllers\Backend\AdminDashboardController;
 use App\Http\Controllers\Backend\AdminDestinationController;
 use App\Http\Controllers\Backend\AdminPlaceTypeController;
@@ -17,13 +19,15 @@ use App\Http\Controllers\Backend\AdminUsersController;
 |
 */
 
-Route::get('/', function () {
-    return view('/Frontend/landing-page');
-});
+Route::get('/', [LandingPageController::class, 'homepage'])->name('home');
+Route::get('/destination', [LandingPageController::class, 'destinationSearch'])->name('search');
+Route::get('/destination/view/{id}', [LandingPageController::class, 'view'])->name('view.modal');
+Route::post('/destination/addActivity/{id}', [LandingPageController::class, 'addActivity'])->name('add.activity');
+Route::post('/destination/deleteActivity/{id}', [LandingPageController::class, 'deleteActivity'])->name('delete.activity');
 
-Route::get('/destination', function () {
-    return view('frontend/Destination');
-});
+
+Route::post('/actionLogin', [LoginController::class, 'actionLogin'])->name('actionLogin');
+Route::get('/actionLogout', [LoginController::class, 'actionLogout'])->name('actionLogout');
 
 Route::get('/admin/', [AdminDashboardController::class, 'view'])->name('admin.dashboard');
 
@@ -39,7 +43,5 @@ Route::post('/admin/type/add', [AdminPlaceTypeController::class, 'create'])->nam
 Route::delete('/admin/type/delete/{id}', [AdminPlaceTypeController::class, 'delete'])->name('admin.destinationtype.delete');
 Route::get('/admin/type/form/{id}', [AdminPlaceTypeController::class, 'loadForm'])->name('admin.destinationtype.form.edit');
 
-
 Route::get('/admin/users', [AdminUsersController::class, 'view'])->name('admin.users');
 Route::get('/admin/users', [AdminUsersController::class, 'view'])->name('admin.users');
-

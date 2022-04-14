@@ -9,7 +9,7 @@ use Illuminate\Contracts\Auth\Factory as Auth;
 class Role
 {
     use ApiHelpers;
-    
+
     public function handle($request, Closure $next)
     {
         if (!auth('sanctum')->user()->isAdmin()) {

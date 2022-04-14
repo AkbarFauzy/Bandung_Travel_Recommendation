@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{{asset('css/animation.css')}}">
 @endsection
 @section('content')
+
 <div class="row justify-content-start">
     <div class="col-3">
         <div class="side_category">
@@ -39,14 +40,14 @@
                         </div>
                         <div class="col-md-8">
                             <div id="list-dest" class="container">
-                                @for($i =0; $i < 3;$i++) 
+                                @foreach($activity as $act)
                                     <ul class="list-group">
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <h5>Tafso Barn</h5>
-                                            <button type="button" class="btn-close" aria-label="Close"></button>
+                                            <h5>{{$act->name}}</h5>
+                                            <button type="button" id="btn-delete-activity" class="btn-close" aria-label="Close" data-id="{{$act->id}}"></button>
                                         </li>
                                     </ul>
-                                    @endfor
+                                @endforeach
                             </div>
                             <div id="button-checkout">
                                 <div class="btn_view">
@@ -178,23 +179,24 @@
                 </div>
                 <hr>
                 <div class="row">
-                    @for($i =0; $i < 7;$i++) 
+                    @foreach($destinations->data as $destination)
                         <div class="col-md-12">
                             <div class="card mb-3">
                                 <div class="row no-gutters">
                                     <div class="col-md-4">
-                                        <img class="image_src" src="{{asset('img/tafso-barn.jpg')}}">
+                                        <img class="image_src" src="{{asset('img/destination/'.$destination->image_name)}}" style="object-fit:cover">
                                     </div>
                                     <div class="col-md-8">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-md-11">
-                                                    <h4 class="card-title">Tafso Barn</h4>
-                                                    <p class="card-text">Alamat : Jl. Baru Laksana No.75, Pagerwangi, Kec. Lembang, Kabupaten Bandung Barat, Jawa Barat 40391</p>
-                                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                                    <h4 class="card-title">{{$destination->name}}</h4>
+                                                    <p class="card-text">Alamat : {{$destination->alamat}}</p>
+                                                    <p>{{Str::limit($destination->description, 150)}}</p>
+                                                    <p class="card-text"><small class="text-muted">{{$destination->updated_at}}</small></p>
                                                     <div id="button-dest" class="row">
                                                         <div class="col-md-11 btn_view">
-                                                            <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-dest">View More</a>
+                                                            <button href="#" id="btn-view" class="btn btn-primary" data-id="{{$destination->id}}">View More</button>
                                                         </div>
 
                                                     </div>
@@ -202,7 +204,7 @@
                                                 <div class="col-md-1">
                                                     <button type="button" class="btn-close" style="position: relative; left: 27px; bottom: 10px;" aria-label="Close"></button>
                                                     <div class="col-md-1 btn_view" style="padding-top:150px">
-                                                        <a href="#" class="btn btn-primary">+</a>
+                                                        <a href="#" id="btn-add-activity" data-name="{{$destination->name}}" data-id="{{$destination->id}}" class="btn btn-primary">+</a>
                                                     </div>
 
                                                 </div>
@@ -213,110 +215,7 @@
                             </div>
                             <hr>
                         </div>
-                    @endfor
-                </div>
-        <!-- ================================================= Modal ================================================== -->
-                <div class="modal fade" id="modal-dest" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content" style="border-radius: 10px;">
-                            <div class="modal-body">
-                                <section>
-                                    <div class="container py-4">
-                                        <div class="row">
-                                            <h3 class="modal-title" id="modal-title" style="position: relative; bottom:10px;">Tafso Barn</h3>
-                                            <a href="#" style="text-decoration: none; color:black;">Alamat : Jl. Baru Laksana No.75, Pagerwangi, Kec. Lembang,Kabupaten Bandung Barat, Jawa Barat 40391</a>
-                                            <a href="#" style="text-decoration: none; position:relative; top: 20px;"><small class="text-muted">Wisata Alam</small></a>
-                                        </div>
-                                        <hr style="width:100%; position:relative; top:13px">
-                                    </div>
-                                    <div id="container-img" class="container py-4" style="position:relative; bottom:25px;">
-                                        <div class="row">
-                                            <div id="img-modal">
-                                                <img src="{{asset('img/1-min.jpg')}}" class="d-block w-100" style="border-radius: 10px;">
-                                            </div>
-                                            
-                                            <!-- <div id="carousel-dest" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                                                <div class="carousel-indicators">
-                                                    <button type="button" data-bs-target="#carousel-dest" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                                    <button type="button" data-bs-target="#carousel-dest" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                                    <button type="button" data-bs-target="#carousel-dest" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                                </div>
-                                                <div class="carousel-inner">
-                                                    <div class="carousel-item active" data-bs-interval="10000">
-                                                        <img src="{{asset('img/1-min.jpg')}}" class="d-block w-100">
-                                                        <div class="carousel-caption d-none d-md-block">
-                                                        </div>
-                                                    </div>
-                                                    <div class="carousel-item" data-bs-interval="2000">
-                                                        <img src="{{asset('img/dest-5.jpg')}}" class="d-block w-100">
-                                                        <div class="carousel-caption d-none d-md-block">
-                                                        </div>
-                                                    </div>
-                                                    <div class="carousel-item">
-                                                        <img src="{{asset('img/dest-6.jpg')}}" class="d-block w-100">
-                                                        <div class="carousel-caption d-none d-md-block">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> -->
-
-                                            <!-- <div class="col-md-3">
-                                                <div class="row">
-                                                    @for($i =0; $i < 3;$i++) 
-                                                        <div id="carousel-dest-1" class="carousel carousel-dark slide" data-bs-ride="carousel">
-                                                            <div class="carousel-inner">
-                                                                <div class="carousel-item active" data-bs-interval="10000">
-                                                                    <img src="{{asset('img/dest-5.jpg')}}" class="d-block w-100">
-                                                                </div>
-                                                                <div class="carousel-item" data-bs-interval="2000">
-                                                                    <img src="{{asset('img/dest-6.jpg')}}" class="d-block w-100">
-                                                                </div>
-                                                                <div class="carousel-item">
-                                                                    <img src="{{asset('img/1-min.jpg')}}" class="d-block w-100">
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <p></p>
-                                                    @endfor
-                                                </div>
-                                            </div> -->
-                                        </div>
-                                        <hr style="width:100%; position:relative; top:20px">
-                                    </div>
-                                    <div id="container-info" class="container py-4" style="position:relative; bottom:25px;">
-                                        <div class="row">
-                                            <div class="col-md-3" style="border-right: 0.5px solid #d3d3d3;">
-                                                <div style="padding-left: 50px; padding-top: 8vh;">
-                                                    <span style="position: relative; bottom:10px;">
-                                                        <img src="{{asset('img/star.png')}}" id="star-img-info"> <a style="position: relative; left:5px; top:4px; font-size:20px;">4.5 Rating</a>
-                                                    </span> 
-                                                    <p class="card-text" style="position: relative;left: 35px; bottom: 0px"><small class="text-muted">(2049 reviews)</small></p>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-9">
-                                                <div style="padding-left: 10px;">
-                                                    <h3>Description</h3>
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, 
-                                                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker 
-                                                    including versions of Lorem Ipsum.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="container py-4">
-                                        <div class="row">
-                                        <hr style="width:100%; position:relative; bottom:10px">
-                                            <div class="tab-content" style="text-align-last:justify;">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -334,7 +233,8 @@
   </ul>
 </nav>
 
-
+@endsection
+@section('assets_js')
 <script>
     function show_hide() {
         var next = document.getElementById("next-btn");
@@ -377,7 +277,7 @@
             back.style.display = "none"
             next.style.display = "inline-block"
             save.style.display = "none"
-        }    
+        }
         else{
             active2.classList.remove("active");
             check.style.display = "none"
@@ -385,6 +285,70 @@
             next.style.display = "inline-block"
         }
     }
+
+function addActivity(id, activity_name){
+   document.getElementById("list-dest").innerHTML+=
+  '<ul class="list-group"><li class="list-group-item d-flex justify-content-between align-items-center"><h5>'+activity_name+'</h5><button type="button" id="btn-delete-activity" class="btn-close" data-id="'+id+'" aria-label="Close"></button></li> </ul>'
+}
+
+$(function() {
+    $(document).ready(function(){
+
+    }).on('click', "#btn-view", function(){
+      let id = $(this).data('id');
+      let dialog = bootbox.dialog({
+        size:'xl',
+        message: '<center><div class="preloader"><div class="spinner-layer pl-red"><div class="circle-clipper left"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></center>'
+      });
+
+      dialog.init(function(e){
+        let req = new XMLHttpRequest();
+        req.onreadystatechange = function(){
+          if (this.readyState == 4 && this.status == 200) {
+            dialog.find('.modal-content > .modal-body').html(this.responseText);
+          }
+        };
+        req.open("GET", '{{url("destination/view")}}/'+id, true);
+        req.send();
+      });
+    }).on('click', '#btn-add-activity', function(){
+      let id = $(this).data('id'),
+          name = $(this).data('name');
+      $.ajax({
+        url:"{{route('add.activity','')}}/"+id,
+        headers:{
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'POST',
+        data:{
+          id:id,
+        },
+        success: function(response){
+          alert('success');
+          addActivity(id,name);
+        },
+        error: function(message){
+          alert(JSON.stringify(message));
+        },
+      })
+
+    }).on('click', '#btn-delete-activity', function(){
+      $.ajax({
+        url:"{{route('delete.activity','')}}/"+id
+        headers:{
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'POST',
+        data:{
+          id:id,
+        },
+        success: function(response){
+          alert('success');
+          addActivity(id,name);
+        },
+      })
+    })
+});
 </script>
 
 @endsection

@@ -3,16 +3,21 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Library\AuthHelpers;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
-use App\Models\Place;
 use DataTables;
+use Session;
 
 class AdminDestinationController extends Controller
 {
+  use AuthHelpers;
+
   public function view(Request $request){
+    $this->onUnauthorized();
+
     if($request->ajax()){
-      $URL = Http::get(env('API_DOMAIN').'/api/place/get-all');
+      $URL = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/get-all');
       $data = json_decode($URL->body())->data;
       return Datatables::of($data)
               ->addIndexColumn()
@@ -34,10 +39,10 @@ class AdminDestinationController extends Controller
 
   public function loadForm($id = null){
     $data = null;
-    $APIDestinationTypes = Http::get(env('API_DOMAIN').'/api/place/type/get-all');
+    $APIDestinationTypes = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/type/get-all');
     $destinationData = json_decode($APIDestinationTypes->body())->data;
     if($id != null){
-      $API = Http::get(env('API_DOMAIN').'/api/place/'.$id);
+      $API = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/'.$id);
       $data = json_decode($API->body())->data;
     }
     return view('Backend/Form/DestinationForm')
@@ -46,7 +51,7 @@ class AdminDestinationController extends Controller
   }
 
   public function create(Request $request){
-    $response = Http::withToken(env('API_KEY'))
+    $response = Http::withToken(Session::get('token'))
     ->attach('inputImage', fopen($request->inputImage, 'r'))
     ->post(env('API_DOMAIN').'/api/place/add', [
         'inputName' => $request->inputName,
@@ -61,12 +66,12 @@ class AdminDestinationController extends Controller
   }
 
   public function update(Request $request){
-    $response = Http::asForm()->post(env('API_DOMAIN').'/api/place/edit', $request);
+    $response = Http::withToken(Session::get('token'))->asForm()->post(env('API_DOMAIN').'/api/place/edit', $request);
     return $response;
   }
 
   public function delete($id){
-    $response = Http::delete(env('API_DOMAIN').'/api/place/delete/'.$id);
+    $response = Http::withToken(Session::get('token'))->delete(env('API_DOMAIN').'/api/place/delete/'.$id);
     return $response->body();
   }
 

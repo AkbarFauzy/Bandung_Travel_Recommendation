@@ -25,7 +25,7 @@ class AuthController extends Controller
                 'inputPassword' => 'required',
                 'inputName' => 'required',
             ]);
-            
+
             if($req->has('inputRole') && auth('sanctum')->user() && auth('sanctum')->user()->role == 'admin') $role = $req->input('inputRole');
 
             DB::beginTransaction();
@@ -57,7 +57,7 @@ class AuthController extends Controller
             if(!$data || !Hash::check($req->input('inputPassword'), $data->password)){
                 throw ValidationException::withMessages(['user' => 'Username atau Password Salah!']);
             }
-            
+
             $token = $data->createToken('userToken')->plainTextToken;
         } catch (\Exception $exception) {
             return $this->onError('User Login Failed!', $exception->getMessage());
