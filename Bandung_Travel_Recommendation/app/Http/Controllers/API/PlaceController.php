@@ -332,7 +332,15 @@ class PlaceController extends Controller
             if($req->has('take')){
                 $data->take($req->input('take'));
             }
-            $data = $data->get();
+            if($req->has('page')){
+                $itemperpage = 10;
+                if($req->has('itempernumber')){
+                    $itemperpage = (int)$req->input('itempernumber');
+                }
+                $data = $data->paginate($itemperpage, ['*'], 'page', (int)$req->input('take'));
+            }else{
+                $data = $data->get();
+            }
         } catch (\Exception $exception) {
             return $this->onError('Get Destinations Failed!', $exception->getMessage());
         }
