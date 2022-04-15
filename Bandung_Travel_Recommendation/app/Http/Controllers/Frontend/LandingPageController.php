@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Http;
 use Session;
 
 class LandingPageController extends Controller
-{
+{   
     public function homepage(){
       $APIDestination = Http::get(env('API_DOMAIN').'/api/place/get-destinations?take=10');
       $APIDestinationType = Http::get(env('API_DOMAIN').'/api/place/get-destination-types');
@@ -34,7 +34,7 @@ class LandingPageController extends Controller
       }else{
         $APIDestination = Http::get(env('API_DOMAIN').'/api/place/get-destination?type_place_ids='.$categories);
       }
-      if(Session::has('activity')){
+      if(Session::has('activity') && Session::get('activity') != null){
         foreach(explode(',',Session::get('activity')) as $dest){
           $data =  Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/'.$dest);
           $activity[] = json_decode($data->body())->data;

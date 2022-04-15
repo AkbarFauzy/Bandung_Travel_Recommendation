@@ -36,8 +36,11 @@ class AdminPlaceTypeController extends Controller
   public function loadForm($id = null){
     $data = null;
     if($id != null){
-      $API = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/type/get-by-id/'.$id);
+      $API = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/type/'.$id);
       $data = json_decode($API->body())->data;
+      
+        return view('Backend/Form/PlaceTypeFormEdit')
+                ->with('data', $data);  
     }
     return view('Backend/Form/PlaceTypeForm')
             ->with('data', $data);

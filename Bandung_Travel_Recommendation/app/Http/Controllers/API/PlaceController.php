@@ -114,7 +114,7 @@ class PlaceController extends Controller
                 'inputTypePlaceId' => 'required',
                 'inputRate' => 'required',
                 'inputDescription' => 'required',
-                'inputImage' => 'required|image|mimes:jpg,png,jpeg|max:500',
+                'inputImage' => 'required|image',
                 'inputAlamat' => 'required',
                 'inputLatitude' => 'required',
                 'inputLongitude' => 'required',
@@ -162,7 +162,7 @@ class PlaceController extends Controller
                 'inputTypePlaceId' => 'required',
                 'inputRate' => 'required',
                 'inputDescription' => 'required',
-                'inputImage' => 'required|image|mimes:jpg,png,jpeg|max:500',
+                // 'inputImage' => 'required|image',
                 'inputAlamat' => 'required',
                 'inputLatitude' => 'required',
                 'inputLongitude' => 'required',
@@ -171,19 +171,25 @@ class PlaceController extends Controller
                 'inputImage.mimes' => "Tipe file hanya boleh (jpg,png,jpeg)",
                 'inputImage.max' => "Ukuran file maksimal 500KB",
             ]);
-            $file = $req->file('inputImage');
-            if($file->extension() == 'tmp'){
-                $image_name = Str::uuid().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME).'.jpg';
-            }else{
-                $image_name = Str::uuid().'_'.$file->getClientOriginalName();
-            }
 
             // $id = $req->input('id');
 
             DB::beginTransaction();
             $data = Place::with('place_types')->findOrFail($id);
+            
+            if($req->has('inputImage') && $req->file('inputImage') != null){
+                $file = $req->file('inputImage');
+                if($file->extension() == 'tmp'){
+                    $image_name = Str::uuid().'_'.pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME).'.jpg';
+                }else{
+                    $image_name = Str::uuid().'_'.$file->getClientOriginalName();
+                }
+            }else{
+                $image_name = $data->image_name;
+            }
 
-            $current_img_path = public_path('img/destination/'.$data->image_name);
+            if($req->has('inputImage') && $req->file('inputImage') != null)
+                $current_img_path = public_path('img/destination/'.$data->image_name);
 
             $data->update([
                 'name' => $req->input('inputName'),
@@ -199,7 +205,8 @@ class PlaceController extends Controller
             if(file_exists($current_img_path)){
                 unlink($current_img_path);
             }
-            $file->move(public_path('img/destination'), $image_name);
+            if($req->has('inputImage') && $req->file('inputImage') != null)
+                $file->move(public_path('img/destination'), $image_name);
         } catch (\Exception $exception) {
             DB::rollback();
             return $this->onError('Update Place Failed!', $exception->getMessage());
