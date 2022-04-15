@@ -17,7 +17,7 @@ class AdminDestinationController extends Controller
     $this->onUnauthorized();
 
     if($request->ajax()){
-      $URL = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/get-all');
+      $URL = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/get-all');      
       $data = json_decode($URL->body())->data;
       return Datatables::of($data)
               ->addIndexColumn()

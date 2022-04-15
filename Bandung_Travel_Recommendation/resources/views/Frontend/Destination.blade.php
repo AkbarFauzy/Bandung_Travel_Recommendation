@@ -333,8 +333,9 @@ $(function() {
       })
 
     }).on('click', '#btn-delete-activity', function(){
+      let id = $(this).data('id');
       $.ajax({
-        url:"{{route('delete.activity','')}}/"+id
+        url:"{{route('delete.activity','')}}/"+id,
         headers:{
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
@@ -344,7 +345,7 @@ $(function() {
         },
         success: function(response){
           alert('success');
-          addActivity(id,name);
+
         },
       })
     })

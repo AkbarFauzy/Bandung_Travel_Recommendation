@@ -39,7 +39,8 @@ class LoginController extends Controller
     public function actionRegister(Request $request){
       $response = Http::post(env('API_DOMAIN').'/api/auth/register', $request);
 
-      return back()->with($response);
+      return back()->with([[
+        'data', $response->body()]]);
     }
 
 }

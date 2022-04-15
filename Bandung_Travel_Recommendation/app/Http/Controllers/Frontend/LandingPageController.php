@@ -36,7 +36,7 @@ class LandingPageController extends Controller
       }
       if(Session::has('activity')){
         foreach(explode(',',Session::get('activity')) as $dest){
-          $data = Http::get(env('API_DOMAIN').'/api/place/'.$dest);
+          $data =  Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/'.$dest);
           $activity[] = json_decode($data->body())->data;
         }
       }
@@ -54,7 +54,7 @@ class LandingPageController extends Controller
     }
 
     public function view($id){
-      $APIDestination = Http::get(env('API_DOMAIN').'/api/place/'.$id);
+      $APIDestination = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/'.$id);
       $data = json_decode($APIDestination->body())->data;
 
       return view('Frontend/view-modal')->with([
@@ -76,7 +76,19 @@ class LandingPageController extends Controller
     }
 
     public function deleteActivity($id){
-      
+      if(Session::has('activity')){
+        $act = explode(',',Session::get('activity'));
+        if (($key = array_search($id, $act)) !== false) {
+            unset($act[$key]);
+        }
+
+        Session::put('activity',   implode(',',$act));
+      }
+
+      return response()->json([
+        'success' => true,
+      ]);
+
     }
 
 }

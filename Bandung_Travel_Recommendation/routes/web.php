@@ -28,6 +28,7 @@ Route::post('/destination/deleteActivity/{id}', [LandingPageController::class, '
 
 Route::post('/actionLogin', [LoginController::class, 'actionLogin'])->name('actionLogin');
 Route::get('/actionLogout', [LoginController::class, 'actionLogout'])->name('actionLogout');
+Route::post('/actionRegister', [LoginController::class, 'actionRegister'])->name('actionRegister');
 
 Route::get('/admin/', [AdminDashboardController::class, 'view'])->name('admin.dashboard');
 

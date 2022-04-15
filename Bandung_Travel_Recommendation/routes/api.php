@@ -30,7 +30,6 @@ Route::get('/place/get-hotels', "PlaceController@getHotels");
 Route::get('/place/get-destinations', "PlaceController@getDestinations");
 Route::get('/place/get-destination-types', "PlaceController@getDestinationTypes");
 
-Route::get('/place/{id}', "PlaceController@getPlaceById");
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
     // User
@@ -52,5 +51,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/place/edit/{id}', "PlaceController@editPlace")->middleware('role');
     Route::delete('/place/delete/{id}', "PlaceController@deletePlace")->middleware('role');
     Route::get('/place/get-all', "PlaceController@getPlaces")->middleware('role');
+    Route::get('/place/{id}', "PlaceController@getPlaceById");
 
 });

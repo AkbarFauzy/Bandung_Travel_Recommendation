@@ -75,18 +75,18 @@
                        <div class="card cascading-right" style=" background: hsla(0, 0%, 100%, 0.55); backdrop-filter: blur(30px);">
                         <div class="card-body p-5 shadow-5 text-center">
                           <h1 class="fw-bold mb-5">Register</h1>
-                          <form id="registerForm" action="/register" method="POST">
+                          <form id="registerForm" action="{{route('actionRegister')}}" method="POST">
                             @csrf
                             <div class="form-floating mb-3">
-                              <input type="text" class="form-control" id="registerFullName" placeholder="Full Name">
+                              <input name="inputName" type="text" class="form-control" id="registerFullName" placeholder="Full Name">
                               <label for="floatingInput">Full Name</label>
                             </div>
                             <div class="form-floating mb-3">
-                              <input type="email" class="form-control" id="registerEmail" placeholder="name@example.com">
+                              <input name="inputEmail" type="email" class="form-control" id="registerEmail" placeholder="name@example.com">
                               <label for="floatingInput">Email address</label>
                             </div>
                             <div class="form-floating mb-4">
-                              <input type="password" class="form-control" id="registerPassword" placeholder="Password">
+                              <input name="inputPassword" type="password" class="form-control" id="registerPassword" placeholder="Password">
                               <label for="floatingPassword">Password</label>
                            </div>
                             <!-- Submit button -->
@@ -152,6 +152,7 @@
 
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span>Hi, {{Session::get('user')->name}}&nbsp;&nbsp;</span>
                   <img
                     src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
                     class="rounded-circle"
