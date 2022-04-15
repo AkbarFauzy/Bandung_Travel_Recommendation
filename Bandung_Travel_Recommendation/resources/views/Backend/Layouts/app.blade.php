@@ -15,25 +15,34 @@
   </head>
   <body style="min-height:100vh">
     <header class="topbar">
-        <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-          <div class="navbar-collapse collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav d-none d-md-block d-lg-none">
-              <li class="nav-item">
-                <a class="
-                    nav-toggler nav-link
-                    waves-effect waves-light
-                    text-white
-                  " href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+      <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+        <!-- <div class="container">
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img
+                    src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                    class="rounded-circle"
+                    height="22"
+                    alt="Black and White Portrait of a Man"
+                    loading="lazy"
+                  />
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Settings</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="{{route('actionLogout')}}">Logout</a></li>
+                </ul>
               </li>
             </ul>
-            <ul class="navbar-nav ms-auto d-flex align-items-center">
-              <li>
-                <a class="profile-pic" href="#">
-                  <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg" alt="user-img" width="36" class="img-circle"><span class="text-white font-medium">Steave</span></a>
-              </li>
-            </ul>
-          </div>
-        </nav>
+
+        </div> -->
+        </div>
+      </nav>
       </header>
 
 

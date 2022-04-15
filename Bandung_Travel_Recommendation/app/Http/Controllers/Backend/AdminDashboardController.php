@@ -22,7 +22,7 @@ class AdminDashboardController extends Controller
     // $data = Http::get(env('API_DOMAIN').'/api/place/get-destinations');
     // echo $data->body();
     // dd(response()->json(['data' => Place::all()]));
-    // return view('Backend/Dashboard');
+    return view('Backend/Dashboard');
   }
 
 }
