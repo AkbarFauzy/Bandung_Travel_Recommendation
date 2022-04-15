@@ -56,7 +56,7 @@
 }
 
 .carousel-content{
-    background-color: rgba(0,0,0,0.8);
+    background-color: rgba(0,0,0,0.6);
     height: 100% !important;
     width: 100% !important;
     position: absolute;
@@ -80,10 +80,61 @@
   font-weight: bold;
   line-height: 50px;
 }
+.caption-2{
+  position: relative;
+  top:35%;
+  font-size: 81px;
+  color: white;
+  font-stretch: 0.5;
+  font-weight: bold;
+  line-height: 50px;
+}
+.caption-3{
+  position: relative;
+  top:30%;
+  right: 10%;
+  font-size: 128px;
+  color: white;
+  font-stretch: 0.5;
+  font-weight: bold;
+  line-height: 50px;
+}
+
+.navbar-brand{
+  color:white
+}
 
 .carousel{
   max-height: 100vh;
 }
+
+.hero {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  bottom:  0;
+  left: 0;
+  right: 0;
+
+  background-size: cover;
+  height: 170vh;
+  width: 100vw;
+
+}
+
+.content-parallax{
+  position: absolute;
+  z-index: 1000;
+  top: 100vh;
+  background: white;
+  height: 100%;
+  width: 100vw;
+
+  box-shadow: 0 -2px 1px rgba(0,0,0,.15);
+  border-top: 1px solid rgba(255,255,255,.2);
+}
+
+
 
 .content-caption-1{
   position: relative;
@@ -99,13 +150,20 @@
   padding: 100px 10px;
 }
 
+.content-2{
+  min-height: 50vh;
+  min-width: 80%;
+  padding: 100px 10px;
+}
+
 .card-group{
   height: 100%;
   padding: 50px 0px;
 }
 
-.card-footer button{
-  width: 100%;
+.card-footer{
+  background-color: white;
+  border: none
 }
 
 .team-card{
@@ -121,13 +179,40 @@
   padding: 100px 0px;
 }
 
+.content-carousel{
+  padding-bottom: 10px
+}
+
+.content-carousel .card{
+  margin: 0px 5px;
+  padding-bottom: 10px;
+}
+
+.slick-slide{
+  transition: 0.1s;
+  transform: scale(0.9);
+}
+
+.slick-center{
+  transition: 0.1s;
+  transform: scale(1);
+}
+
+.slick-prev:before, .slick-next:before{
+  font-size: 40px;
+}
+
+.slick-prev {
+  left: -45px;
+}
+
 .content-caption-3{
   position: relative;
   font-size: 48px;
   font-stretch: 0.5;
   font-weight: bold;
   line-height: 80px;
-  margin-bottom: 100px
+  margin-bottom: 50px
 }
 
 .content-3 .card{
