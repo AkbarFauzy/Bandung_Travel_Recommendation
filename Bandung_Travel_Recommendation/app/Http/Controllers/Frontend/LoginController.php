@@ -33,7 +33,7 @@ class LoginController extends Controller
     public function actionLogout(){
       $response = Http::withToken(Session::get('token'))->post(env('API_DOMAIN').'/api/auth/logout', []);
       Session::flush();
-      return back();
+      return redirect()->intended('/');;
     }
 
     public function actionRegister(Request $request){

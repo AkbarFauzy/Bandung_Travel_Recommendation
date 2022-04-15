@@ -1,4 +1,4 @@
-<form id ="form" class="" action='{{route("admin.destinationtype.form.update")}}' method="post" enctype="multipart/form-data">
+<form id ="form" class="" action='{{route("admin.destinationtype.form.update", $data->id)}}' method="post">
   <!-- @csrf -->
   <div class="form-floating mb-3 col-md-12">
     <input type="text" class="form-control" name="inputName" id="name" placeholder="Place Name" value="{{$data->name ?? ''}}">

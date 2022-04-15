@@ -176,7 +176,7 @@ class PlaceController extends Controller
 
             DB::beginTransaction();
             $data = Place::with('place_types')->findOrFail($id);
-            
+
             if($req->has('inputImage') && $req->file('inputImage') != null){
                 $file = $req->file('inputImage');
                 if($file->extension() == 'tmp'){
@@ -201,12 +201,13 @@ class PlaceController extends Controller
                 'latitude' => $req->input('inputLatitude'),
                 'longitude' => $req->input('inputLongitude'),
             ]);
-            DB::commit();
-            if(file_exists($current_img_path)){
+            if($req->has('inputImage') && $req->file('inputImage') != null)
+              if(file_exists($current_img_path)){
                 unlink($current_img_path);
-            }
+              }
             if($req->has('inputImage') && $req->file('inputImage') != null)
                 $file->move(public_path('img/destination'), $image_name);
+            DB::commit();
         } catch (\Exception $exception) {
             DB::rollback();
             return $this->onError('Update Place Failed!', $exception->getMessage());

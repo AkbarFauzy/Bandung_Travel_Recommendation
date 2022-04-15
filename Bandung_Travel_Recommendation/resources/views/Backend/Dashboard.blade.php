@@ -4,7 +4,8 @@
 
 @extends('Backend.layouts.app')
 @section('content')
-<div class="row d-flex justify-content-center dashboard-wrapper" style="min-height:20vh">
+<h1>WIP</h1>
+<!-- <div class="row d-flex justify-content-center dashboard-wrapper" style="min-height:20vh">
   <div class="col-md-3">
     <div class="dashboard-count-box">
       <div class="row d-flex align-items-center" style="height:100%">
@@ -54,5 +55,5 @@
     </div>
   </div>
 
-</div>
+</div> -->
 @endsection

@@ -17,7 +17,7 @@ class AdminDestinationController extends Controller
     $this->onUnauthorized();
 
     if($request->ajax()){
-      $URL = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/get-all');      
+      $URL = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/get-all');
       $data = json_decode($URL->body())->data;
       return Datatables::of($data)
               ->addIndexColumn()
@@ -45,7 +45,7 @@ class AdminDestinationController extends Controller
     if($id != null){
       $API = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/'.$id);
       $data = json_decode($API->body())->data;
-      
+
       return view('Backend/Form/DestinationFormEdit')
               ->with('data', $data)
               ->with('destination_types', $destinationData);
@@ -70,8 +70,8 @@ class AdminDestinationController extends Controller
     return $response;
   }
 
-  public function update(Request $request){
-    $response = Http::withToken(Session::get('token'))->asForm()->post(env('API_DOMAIN').'/api/place/edit', $request);
+  public function update(Request $request, $id){
+    $response = Http::withToken(Session::get('token'))->post(env('API_DOMAIN').'/api/place/edit/'.$id, $request);
     return $response;
   }
 
