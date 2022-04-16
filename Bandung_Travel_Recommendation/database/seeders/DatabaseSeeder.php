@@ -14,6 +14,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // $this->call([
+        //   PlaceTypeSeeder::class,
+        //   PlaceSeeder::class,
+        // ]);
         // \App\Models\User::factory(10)->create();
+        $this->call(PlaceTypeSeeder::class);
+        $this->call(PlaceSeeder::class);
+        $this->call(UserSeeder::class);
     }
 }
