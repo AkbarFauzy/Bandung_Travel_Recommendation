@@ -85,7 +85,7 @@
                 <div class="card-footer">
                   <i class="bi bi-eye"></i>&nbsp;<span>{{$destination->view}}</span>
                   <div class="float-end">
-                    <button type="button" name="button" id="btn-save" class="btn btn-success" data-id="{{$destination->id}}">Lihat</button>
+                    {{-- <button type="button" name="button" id="btn-save" class="btn btn-success" data-id="{{$destination->id}}">Lihat</button> --}}
                     <!-- <button type="button" name="button" id="btn-save" class="btn btn-success" data-id="{{$destination->id}}">Simpan</button> -->
                   </div>
                 </div>
@@ -113,7 +113,7 @@
                   <div class="card-footer">
                     <i class="bi bi-eye"></i>&nbsp;<span>{{$hotel->view}}</span>
                     <div class="float-end">
-                      <button type="button" name="button" class="btn btn-success" data-id="{{$destination->id}}">Lihat</button>
+                      {{-- <button type="button" name="button" class="btn btn-success" data-id="{{$destination->id}}">Lihat</button> --}}
                       <!-- <button type="button" name="button" class="btn btn-success" data-id="{{$destination->id}}">Simpan</button> -->
                     </div>
                   </div>
