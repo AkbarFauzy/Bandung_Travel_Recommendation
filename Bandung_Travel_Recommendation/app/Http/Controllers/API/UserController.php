@@ -89,8 +89,14 @@ class UserController extends Controller
     {
         try {
             DB::beginTransaction();
-            FavoritePlaceItems::where('favorite_id', $id)->delete();
-            Favorite::findorfail($id)->delete();
+            $user = auth('sanctum')->user();
+            $place = Favorite::findorfail($id);
+            if($place->user_id == $user->id){
+                FavoritePlaceItems::where('favorite_id', $id)->delete();
+                $place->delete();
+            }else{
+                return $this->onUnauthorized();
+            }
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollback();
