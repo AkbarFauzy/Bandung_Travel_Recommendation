@@ -17,7 +17,7 @@ class AdminDestinationController extends Controller
     $this->onUnauthorized();
 
     if($request->ajax()){
-      $URL = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/get-all');      
+      $URL = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/get-all');
       $data = json_decode($URL->body())->data;
       return Datatables::of($data)
               ->addIndexColumn()
@@ -25,8 +25,9 @@ class AdminDestinationController extends Controller
                 return $place->place_types->name;
               })
               ->addColumn('action', function($row){
-                $btn = '<a class="edit btn btn-primary btn-md" id="btn-view" data-id='.$row->id.' style="margin-right:10px">View</a>';
-                $btn .='<a class="edit btn btn-warning btn-md" id="btn-update" data-id='.$row->id.' style="margin-right:10px">Update</a>';
+                // $btn = '<a class="edit btn btn-primary btn-md" id="btn-view" data-id='.$row->id.' style="margin-right:10px">View</a>';
+                // $btn .='<a class="edit btn btn-warning btn-md" id="btn-update" data-id='.$row->id.' style="margin-right:10px">Update</a>';
+                $btn ='<a class="edit btn btn-warning btn-md" id="btn-update" data-id='.$row->id.' style="margin-right:10px">Update</a>';
                 $btn .= '<a class="edit btn btn-danger btn-md" id="btn-delete" data-id='.$row->id.' style="margin-right:10px">Delete</a>';
                 return $btn;
               })
@@ -44,6 +45,10 @@ class AdminDestinationController extends Controller
     if($id != null){
       $API = Http::withToken(Session::get('token'))->get(env('API_DOMAIN').'/api/place/'.$id);
       $data = json_decode($API->body())->data;
+
+      return view('Backend/Form/DestinationFormEdit')
+              ->with('data', $data)
+              ->with('destination_types', $destinationData);
     }
     return view('Backend/Form/DestinationForm')
             ->with('data', $data)
@@ -65,8 +70,8 @@ class AdminDestinationController extends Controller
     return $response;
   }
 
-  public function update(Request $request){
-    $response = Http::withToken(Session::get('token'))->asForm()->post(env('API_DOMAIN').'/api/place/edit', $request);
+  public function update(Request $request, $id){
+    $response = Http::withToken(Session::get('token'))->post(env('API_DOMAIN').'/api/place/edit/'.$id, $request);
     return $response;
   }
 

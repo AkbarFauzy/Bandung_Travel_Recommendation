@@ -4,12 +4,16 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Library\AuthHelpers;
 use Illuminate\Support\Facades\Http;
 use GuzzleHttp\Client;
 
 class AdminDashboardController extends Controller
 {
+  use AuthHelpers;
+
   public function view(){
+    $this->onUnauthorized();
     // dd(url('api/place/get-places'));
     // $client = new Client();
     // $res = $client->get(env('API_DOMAIN').'/api/place/get-destinations',[]);

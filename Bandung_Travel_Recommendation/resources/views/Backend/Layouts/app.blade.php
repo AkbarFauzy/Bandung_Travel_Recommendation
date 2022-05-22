@@ -54,7 +54,7 @@
         <li><a href=" {{route('admin.destination')}}" class="{{ (request()->is('admin/destination*')) ? 'active' : '' }}"><i class="bi bi-geo-alt"></i>&nbsp;&nbsp;&nbsp;Destination</a></li>
         <li><a href=" {{route('admin.destinationtype')}}" class="{{ (request()->is('admin/type*')) ? 'active' : '' }}"><i class="bi bi-map"></i>&nbsp;&nbsp;&nbsp;Destination Type</a></li>
       </ul>
-      <button href="#" class="logout-btn">Logout&nbsp;&nbsp;&nbsp;<i class="bi bi-door-closed"></i></button>
+      <button class="logout-btn"><a href="{{route('actionLogout')}}">Logout&nbsp;&nbsp;&nbsp;<i class="bi bi-door-closed"></i></a></button>
     </div>
 
     <div id="main">

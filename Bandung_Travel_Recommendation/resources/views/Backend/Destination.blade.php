@@ -199,7 +199,7 @@ $(function() {
             Swal.fire({
               icon: 'success',
               title: 'Success!.',
-              text: response,
+              text: JSON.parse(response)['message'],
             });
           }else{
             for (var value of data.values()) {
@@ -208,7 +208,7 @@ $(function() {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: JSON.stringify(response),
+              text: JSON.parse(response)['message'],
             })
           }
         },
@@ -216,7 +216,7 @@ $(function() {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: JSON.stringify(message),
+            text: JSON.parse(response)['message'],
           })
         }
       });

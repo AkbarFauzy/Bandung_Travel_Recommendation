@@ -123,7 +123,7 @@ $(function() {
                 id:id
               },
               success: function(response){
-                if(JSON.parse(response)["success"]){
+                if(response){
                   Swal.fire(
                     'Deleted!',
                     'Your record has been deleted.',
@@ -162,13 +162,13 @@ $(function() {
         contentType: false,
         processData: false,
         success: function(response){
-          if(JSON.parse(response)['success']){
+          if(response){
             bootbox.hideAll();
             $('#datatables-ajax').DataTable().ajax.reload();
             Swal.fire({
               icon: 'success',
               title: 'Success!.',
-              text: response,
+              text: JSON.parse(response)['message'],
             });
           }else{
             for (var value of data.values()) {
@@ -177,7 +177,7 @@ $(function() {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: JSON.stringify(response),
+              text: JSON.parse(response)['message'],
             })
           }
         },
@@ -185,7 +185,7 @@ $(function() {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: JSON.stringify(message),
+            text: JSON.parse(response)['message'],
           })
         }
       });

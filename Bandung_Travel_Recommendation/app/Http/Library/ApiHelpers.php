@@ -34,4 +34,9 @@ trait ApiHelpers{
             'data' => '',
         ], $code, $this->headers);
     }
+
+    protected function FunctionName(Type $var = null)
+    {
+        # code...
+    }
 }

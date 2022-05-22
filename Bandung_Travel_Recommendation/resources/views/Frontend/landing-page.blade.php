@@ -85,8 +85,8 @@
                 <div class="card-footer">
                   <i class="bi bi-eye"></i>&nbsp;<span>{{$destination->view}}</span>
                   <div class="float-end">
-                    <button type="button" name="button" id="btn-save" class="btn btn-success" data-id="{{$destination->id}}">Lihat</button>
-                    <button type="button" name="button" id="btn-save" class="btn btn-success" data-id="{{$destination->id}}">Simpan</button>
+                    {{-- <button type="button" name="button" id="btn-save" class="btn btn-success" data-id="{{$destination->id}}">Lihat</button> --}}
+                    <!-- <button type="button" name="button" id="btn-save" class="btn btn-success" data-id="{{$destination->id}}">Simpan</button> -->
                   </div>
                 </div>
               </div>
@@ -113,8 +113,8 @@
                   <div class="card-footer">
                     <i class="bi bi-eye"></i>&nbsp;<span>{{$hotel->view}}</span>
                     <div class="float-end">
-                      <button type="button" name="button" class="btn btn-success" data-id="{{$destination->id}}">Lihat</button>
-                      <button type="button" name="button" class="btn btn-success" data-id="{{$destination->id}}">Simpan</button>
+                      {{-- <button type="button" name="button" class="btn btn-success" data-id="{{$destination->id}}">Lihat</button> --}}
+                      <!-- <button type="button" name="button" class="btn btn-success" data-id="{{$destination->id}}">Simpan</button> -->
                     </div>
                   </div>
                 </div>
@@ -164,23 +164,64 @@
       </div><br />
 
       <div class="row">
-        @for ($i =0; $i < 4;$i++)
+
         <div class="col-md-3 col-sm-6">
           <div class="card team-card text-center">
             <div class="team-img-container">
               <img class="card-img-top team-img" src="{{asset('img/1-min.jpg')}}" alt="Card image">
             </div>
             <div class="card-body">
-              <h4 class="card-title">John Doe</h4>
-              <p class="card-text">Some example text.</p>
-              <a href="#" class="btn btn-primary team-social-media"><i class="bi bi-github"></i></a>
-              <a href="#" class="btn btn-primary team-social-media"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="btn btn-primary team-social-media"><i class="bi bi-linkedin"></i></a>
-              <a href="#" class="btn btn-primary team-social-media"><i class="bi bi-facebook"></i></a>
+              <h4 class="card-title">Moch. Nuval Rizaldi</h4>
+              <p class="card-text">1301194482</p>
+              <a href="https://github.com/Muvazana" class="btn btn-primary team-social-media"><i class="bi bi-github"></i></a>
+              <a href="https://www.linkedin.com/in/moch-nauval-rizaldi-nasril-681924195/" class="btn btn-primary team-social-media"><i class="bi bi-linkedin"></i></a>
             </div>
           </div>
         </div>
-        @endfor
+
+        <div class="col-md-3 col-sm-6">
+          <div class="card team-card text-center">
+            <div class="team-img-container">
+              <img class="card-img-top team-img" src="{{asset('img/1-min.jpg')}}" alt="Card image">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Arga Melvern</h4>
+              <p class="card-text">1301194055</p>
+              <a href="https://github.com/ArgaMelvern" class="btn btn-primary team-social-media"><i class="bi bi-github"></i></a>
+              <a href="https://www.linkedin.com/in/argamelvern/" class="btn btn-primary team-social-media"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="card team-card text-center">
+            <div class="team-img-container">
+              <img class="card-img-top team-img" src="{{asset('img/1-min.jpg')}}" alt="Card image">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Mohammad Akbar Fauzy</h4>
+              <p class="card-text">1301194133</p>
+              <a href="https://github.com/AkbarFauzy" class="btn btn-primary team-social-media"><i class="bi bi-github"></i></a>
+              <a href="#https://linkedin.com/in/akbarfauzy/" class="btn btn-primary team-social-media"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+          <div class="card team-card text-center">
+            <div class="team-img-container">
+              <img class="card-img-top team-img" src="{{asset('img/1-min.jpg')}}" alt="Card image">
+            </div>
+            <div class="card-body">
+              <h4 class="card-title">Jane Raihan</h4>
+              <p class="card-text">1301194240</p>
+              <a href="https://github.com/janerhn" class="btn btn-primary team-social-media"><i class="bi bi-github"></i></a>
+              <a href="https://www.linkedin.com/in/jane-raihan-3b7b301bb/" class="btn btn-primary team-social-media"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
 
