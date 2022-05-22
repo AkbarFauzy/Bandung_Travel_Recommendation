@@ -73,7 +73,9 @@ class UserController extends Controller
                     'place_id' => (int)$place_id
                 ]);
             }
-            $data = $favorite->with('places')->get();
+            $data = $favorite->with('places')
+            ->where('user_id', auth('sanctum')->user()->id)
+            ->get();
             DB::commit();
         } catch (\Exception $exception) {
             DB::rollback();
