@@ -23,14 +23,18 @@ class UserController extends Controller
     {
         try {
             $req->validate([
-                'inputPassword' => 'required',
                 'inputName' => 'required',
             ]);
 
             DB::beginTransaction();
             $data = auth('sanctum')->user();
+            $pass = $data->password;
+            if($req->has('inputPassword')){
+                $pass = Hash::make($req->input('inputPassword'));
+            }
+
             $data->update([
-                'password' => Hash::make($req->input('inputPassword')),
+                'password' => $pass,
                 'name' => $req->input('inputName')
             ]);
             DB::commit();
@@ -38,7 +42,7 @@ class UserController extends Controller
             DB::rollback();
             return $this->onError('Update User Failed!', $exception->getMessage());
         }
-        return $this->onSuccess($data, 'Update User Success!');
+        return $this->onSuccess($data, 'Update User Success! '.$pass);
     }
     
     public function getInformation()
